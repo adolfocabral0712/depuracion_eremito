@@ -20,7 +20,7 @@
       --verde-oscuro: #164d3c;
       --verde: #267357;
       --verde-claro: #e1f1e9;
-      --verde-fondo: #edf5f1;
+      --fondo: #edf5f1;
       --blanco: #ffffff;
       --texto: #163029;
       --muted: #64756e;
@@ -29,8 +29,6 @@
       --rojo-claro: #fff2f2;
       --amarillo: #a86b00;
       --amarillo-claro: #fff5d9;
-      --azul: #236ca5;
-      --azul-claro: #e8f3fb;
       --sombra:
         0 8px 24px rgba(18, 62, 48, 0.09);
     }
@@ -49,7 +47,7 @@
         linear-gradient(
           180deg,
           #f5faf7 0,
-          var(--verde-fondo) 100%
+          var(--fondo) 100%
         );
       color: var(--texto);
       font-family:
@@ -91,7 +89,8 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(1.45rem, 3vw, 2.15rem);
+      font-size:
+        clamp(1.45rem, 3vw, 2.15rem);
     }
 
     .subtitulo {
@@ -103,19 +102,21 @@
     .actualizacion {
       flex: 0 0 auto;
       min-width: 245px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border:
+        1px solid rgba(255, 255, 255, 0.25);
       border-radius: 13px;
-      background: rgba(255, 255, 255, 0.1);
+      background:
+        rgba(255, 255, 255, 0.1);
       padding: 10px 14px;
       text-align: center;
     }
 
     .actualizacion span {
       display: block;
+      margin-bottom: 5px;
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.07em;
-      margin-bottom: 5px;
     }
 
     .actualizacion strong {
@@ -175,27 +176,23 @@
       align-items: center;
     }
 
-    .tarjeta.etiqueta-roja {
+    .tarjeta.roja {
       border-color: #efb7b7;
       background: var(--rojo-claro);
-    }
-
-    .tarjeta.etiqueta-amarilla {
-      border-color: #ecd394;
-      background: var(--amarillo-claro);
     }
 
     .tarjeta-titulo {
       min-height: 30px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       color: var(--muted);
       font-size: 0.69rem;
       font-weight: 700;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
       line-height: 1.2;
+      text-align: center;
+      text-transform: uppercase;
     }
 
     .tarjeta-valor {
@@ -204,14 +201,11 @@
       font-size: 1.85rem;
       font-weight: 800;
       line-height: 1;
+      text-align: center;
     }
 
-    .etiqueta-roja .tarjeta-valor {
+    .tarjeta.roja .tarjeta-valor {
       color: var(--rojo);
-    }
-
-    .etiqueta-amarilla .tarjeta-valor {
-      color: var(--amarillo);
     }
 
     .panel {
@@ -224,7 +218,8 @@
 
     .pestanas {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:
+        repeat(3, 1fr);
       gap: 7px;
       padding: 8px;
       border-bottom: 1px solid var(--borde);
@@ -313,6 +308,11 @@
       color: var(--verde-oscuro);
     }
 
+    .boton:disabled {
+      cursor: wait;
+      opacity: 0.6;
+    }
+
     .estado-tabla {
       min-height: 35px;
       display: flex;
@@ -329,7 +329,8 @@
       overflow: auto;
       border-top: 1px solid var(--borde);
       scrollbar-width: auto;
-      scrollbar-color: #7b9187 #edf2ef;
+      scrollbar-color:
+        #7b9187 #edf2ef;
     }
 
     .contenedor-tabla::-webkit-scrollbar {
@@ -359,7 +360,8 @@
       top: 0;
       z-index: 2;
       height: 38px;
-      border-right: 1px solid rgba(255, 255, 255, 0.45);
+      border-right:
+        1px solid rgba(255, 255, 255, 0.45);
       background: var(--verde-oscuro);
       color: var(--blanco);
       padding: 5px 7px;
@@ -446,10 +448,6 @@
       white-space: nowrap;
     }
 
-    .oculto {
-      display: none !important;
-    }
-
     footer {
       margin-top: 17px;
       color: var(--muted);
@@ -470,9 +468,13 @@
         align-items: stretch;
       }
 
+      .encabezado-contenido > div:first-child {
+        text-align: center;
+      }
+
       .actualizacion {
-        min-width: 0;
         width: 100%;
+        min-width: 0;
       }
 
       .tarjetas {
@@ -492,10 +494,6 @@
     @media (max-width: 600px) {
       .encabezado {
         padding: 17px 14px;
-      }
-
-      .encabezado-contenido {
-        text-align: center;
       }
 
       main {
@@ -626,7 +624,10 @@
 
       <div class="actualizacion">
         <span>ÚLTIMA ACTUALIZACIÓN</span>
-        <strong id="actualizacion">Consultando…</strong>
+
+        <strong id="actualizacion">
+          Consultando…
+        </strong>
       </div>
     </div>
   </header>
@@ -667,7 +668,7 @@
         </div>
       </article>
 
-      <article class="tarjeta etiqueta-roja">
+      <article class="tarjeta roja">
         <div class="tarjeta-titulo">
           Conductores observados
         </div>
@@ -706,7 +707,7 @@
         </div>
       </article>
 
-      <article class="tarjeta etiqueta-roja">
+      <article class="tarjeta roja">
         <div class="tarjeta-titulo">
           Vehículos observados
         </div>
@@ -805,6 +806,7 @@
       <div class="contenedor-tabla">
         <table>
           <thead id="encabezadoTabla"></thead>
+
           <tbody id="cuerpoTabla"></tbody>
         </table>
       </div>
@@ -957,31 +959,27 @@
       empresas: [
         {
           titulo: "TIPO",
-          claves: [
-            "tipo"
-          ]
+          claves: ["tipo"]
         },
         {
           titulo: "EMPRESA",
-          claves: [
-            "empresa"
-          ]
+          claves: ["empresa"]
         },
         {
           titulo: "TOTAL ACTIVOS",
-          claves: [
-            "total_activos"
-          ]
+          claves: ["total_activos"]
         },
         {
-          titulo: "UTILIZADOS ÚLTIMOS 60 DÍAS",
+          titulo:
+            "UTILIZADOS ÚLTIMOS 60 DÍAS",
           claves: [
             "utilizados_ultimos_60_dias",
             "utilizados"
           ]
         },
         {
-          titulo: "SIN USO ÚLTIMOS 60 DÍAS",
+          titulo:
+            "SIN USO ÚLTIMOS 60 DÍAS",
           claves: [
             "sin_uso_ultimos_60_dias",
             "sin_uso"
@@ -995,7 +993,8 @@
           ]
         },
         {
-          titulo: "CANDIDATOS DEPURACIÓN",
+          titulo:
+            "CANDIDATOS DEPURACIÓN",
           claves: [
             "candidatos_depuracion",
             "candidatos"
@@ -1022,7 +1021,29 @@
     }
 
 
-    function valorDe(fila, claves = []) {
+    function numero(valor) {
+      const convertido =
+        Number(valor);
+
+      return Number.isFinite(convertido)
+        ? convertido
+        : 0;
+    }
+
+
+    function normalizar(valor) {
+      return String(valor ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+    }
+
+
+    function valorDe(
+      fila,
+      claves = []
+    ) {
       for (const clave of claves) {
         if (
           Object.prototype.hasOwnProperty.call(
@@ -1041,27 +1062,16 @@
     }
 
 
-    function numero(valor) {
-      const convertido = Number(valor);
-
-      return Number.isFinite(convertido)
-        ? convertido
-        : 0;
-    }
-
-
-    function normalizar(valor) {
-      return String(valor ?? "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .trim();
-    }
-
-
-    function lista(objeto, claves) {
+    function lista(
+      objeto,
+      claves
+    ) {
       for (const clave of claves) {
-        if (Array.isArray(objeto?.[clave])) {
+        if (
+          Array.isArray(
+            objeto?.[clave]
+          )
+        ) {
           return objeto[clave];
         }
       }
@@ -1098,32 +1108,27 @@
         );
       }
 
-      const fecha = new Date(valor);
+      const fecha =
+        new Date(valor);
 
-      if (Number.isNaN(fecha.getTime())) {
+      if (
+        Number.isNaN(
+          fecha.getTime()
+        )
+      ) {
         return texto(valor);
       }
 
-      const incluyeHora =
-        String(valor).includes("T") ||
-        String(valor).includes(" ");
-
       return fecha.toLocaleString(
         "es-UY",
-        incluyeHora
-          ? {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false
-            }
-          : {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric"
-            }
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        }
       );
     }
 
@@ -1133,13 +1138,14 @@
         "https://remitoelectronico.uy/frontend/driver/"
       );
 
-      url.search = new URLSearchParams({
-        first_name: "",
-        last_name: "",
-        identity_document:
-          String(cedula ?? "").trim(),
-        contractor_fk: ""
-      }).toString();
+      url.search =
+        new URLSearchParams({
+          first_name: "",
+          last_name: "",
+          identity_document:
+            String(cedula ?? "").trim(),
+          contractor_fk: ""
+        }).toString();
 
       return url.href;
     }
@@ -1150,34 +1156,35 @@
         "https://remitoelectronico.uy/frontend/vehicle/"
       );
 
-      url.search = new URLSearchParams({
-        plate:
-          String(matricula ?? "").trim(),
-        vehicle_type: "",
-        model: "",
-        active: "",
-        contractor_fk: ""
-      }).toString();
+      url.search =
+        new URLSearchParams({
+          plate:
+            String(matricula ?? "").trim(),
+          vehicle_type: "",
+          model: "",
+          active: "",
+          contractor_fk: ""
+        }).toString();
 
       return url.href;
     }
 
 
     function claseEstado(valor) {
-      const estadoNormalizado =
+      const resultado =
         normalizar(valor);
 
       if (
-        estadoNormalizado.includes("nunca") ||
-        estadoNormalizado.includes("sin uso") ||
-        estadoNormalizado.includes("depuracion")
+        resultado.includes("nunca") ||
+        resultado.includes("sin uso") ||
+        resultado.includes("depuracion")
       ) {
         return "estado-rojo";
       }
 
       if (
-        estadoNormalizado.includes("revisar") ||
-        estadoNormalizado.includes("coincidencia")
+        resultado.includes("revisar") ||
+        resultado.includes("coincidencia")
       ) {
         return "estado-amarillo";
       }
@@ -1200,11 +1207,15 @@
 
 
     function registrosActuales() {
-      if (estado.tab === "conductores") {
+      if (
+        estado.tab === "conductores"
+      ) {
         return estado.datos.conductores;
       }
 
-      if (estado.tab === "vehiculos") {
+      if (
+        estado.tab === "vehiculos"
+      ) {
         return estado.datos.vehiculos;
       }
 
@@ -1214,10 +1225,14 @@
 
     function registrosFiltrados() {
       const busqueda =
-        normalizar(estado.filtroTexto);
+        normalizar(
+          estado.filtroTexto
+        );
 
       const empresaSeleccionada =
-        normalizar(estado.filtroEmpresa);
+        normalizar(
+          estado.filtroEmpresa
+        );
 
       return registrosActuales().filter(
         fila => {
@@ -1251,17 +1266,24 @@
     }
 
 
-    function celdaHTML(fila, columna) {
-      if (columna.tipo === "accion_conductor") {
-        const cedula = valorDe(
-          fila,
-          [
-            "cedula_identidad",
-            "cedula",
-            "ci_eremito",
-            "identity_document"
-          ]
-        );
+    function celdaHTML(
+      fila,
+      columna
+    ) {
+      if (
+        columna.tipo ===
+        "accion_conductor"
+      ) {
+        const cedula =
+          valorDe(
+            fila,
+            [
+              "cedula_identidad",
+              "cedula",
+              "ci_eremito",
+              "identity_document"
+            ]
+          );
 
         if (!cedula) {
           return "—";
@@ -1281,14 +1303,18 @@
         `;
       }
 
-      if (columna.tipo === "accion_vehiculo") {
-        const matricula = valorDe(
-          fila,
-          [
-            "matricula",
-            "matricula_limpia"
-          ]
-        );
+      if (
+        columna.tipo ===
+        "accion_vehiculo"
+      ) {
+        const matricula =
+          valorDe(
+            fila,
+            [
+              "matricula",
+              "matricula_limpia"
+            ]
+          );
 
         if (!matricula) {
           return "—";
@@ -1309,15 +1335,22 @@
       }
 
       const valor =
-        valorDe(fila, columna.claves);
+        valorDe(
+          fila,
+          columna.claves
+        );
 
-      if (columna.tipo === "fecha") {
+      if (
+        columna.tipo === "fecha"
+      ) {
         return escaparHTML(
           formatearFecha(valor)
         );
       }
 
-      if (columna.tipo === "estado") {
+      if (
+        columna.tipo === "estado"
+      ) {
         return `
           <span
             class="estado ${claseEstado(valor)}"
@@ -1327,7 +1360,9 @@
         `;
       }
 
-      return escaparHTML(texto(valor));
+      return escaparHTML(
+        texto(valor)
+      );
     }
 
 
@@ -1342,10 +1377,13 @@
         <tr>
           ${definicion
             .map(
-              columna =>
-                `<th>${escaparHTML(
-                  columna.titulo
-                )}</th>`
+              columna => `
+                <th>
+                  ${escaparHTML(
+                    columna.titulo
+                  )}
+                </th>
+              `
             )
             .join("")}
         </tr>
@@ -1362,6 +1400,7 @@
             </td>
           </tr>
         `;
+
       } else {
         $("cuerpoTabla").innerHTML =
           filas
@@ -1433,9 +1472,11 @@
         ${empresas
           .map(
             empresa => `
-              <option value="${escaparHTML(
-                empresa
-              )}">
+              <option
+                value="${escaparHTML(
+                  empresa
+                )}"
+              >
                 ${escaparHTML(empresa)}
               </option>
             `
@@ -1443,103 +1484,128 @@
           .join("")}
       `;
 
-      $("empresa").value = actual;
+      $("empresa").value =
+        actual;
     }
 
 
-    function totalesDesdeResumen(tipo) {
-      const fila =
-        estado.datos.resumen.find(
-          registro =>
-            normalizar(
-              registro.tipo
-            ).includes(
-              normalizar(tipo)
-            )
+    function sumarResumenPorTipo(
+      tipoBuscado
+    ) {
+      const filas =
+        estado.datos.empresas.filter(
+          fila => {
+            const tipo =
+              normalizar(
+                valorDe(
+                  fila,
+                  ["tipo"]
+                )
+              );
+
+            return tipo.includes(
+              normalizar(tipoBuscado)
+            );
+          }
         );
 
-      if (!fila) {
-        return null;
-      }
-
       return {
-        activos: numero(
-          valorDe(
-            fila,
-            [
-              "total_activos",
-              "total"
-            ]
-          )
-        ),
+        activos:
+          filas.reduce(
+            (total, fila) =>
+              total +
+              numero(
+                valorDe(
+                  fila,
+                  ["total_activos"]
+                )
+              ),
+            0
+          ),
 
-        utilizados: numero(
-          valorDe(
-            fila,
-            [
-              "utilizados_ultimos_60_dias",
-              "utilizados"
-            ]
-          )
-        ),
+        utilizados:
+          filas.reduce(
+            (total, fila) =>
+              total +
+              numero(
+                valorDe(
+                  fila,
+                  [
+                    "utilizados_ultimos_60_dias",
+                    "utilizados"
+                  ]
+                )
+              ),
+            0
+          ),
 
-        observados: numero(
-          valorDe(
-            fila,
-            [
-              "candidatos_depuracion",
-              "sin_uso_ultimos_60_dias",
-              "observados"
-            ]
+        observados:
+          filas.reduce(
+            (total, fila) =>
+              total +
+              numero(
+                valorDe(
+                  fila,
+                  [
+                    "candidatos_depuracion",
+                    "sin_uso_ultimos_60_dias",
+                    "observados"
+                  ]
+                )
+              ),
+            0
           )
-        )
       };
     }
 
 
     function actualizarTarjetas() {
       const conductores =
-        totalesDesdeResumen("CONDUCTORES");
+        sumarResumenPorTipo(
+          "CONDUCTORES"
+        );
 
       const vehiculos =
-        totalesDesdeResumen("VEHICULOS") ||
-        totalesDesdeResumen("VEHÍCULOS");
+        sumarResumenPorTipo(
+          "VEHICULOS"
+        );
 
-      const conductoresObservados =
-        estado.datos.conductores.length;
+      $("conductoresActivos")
+        .textContent =
+          conductores.activos;
 
-      const vehiculosObservados =
-        estado.datos.vehiculos.length;
+      $("conductoresUtilizados")
+        .textContent =
+          conductores.utilizados;
 
-      $("conductoresActivos").textContent =
-        conductores?.activos ?? "—";
+      $("conductoresObservados")
+        .textContent =
+          conductores.observados;
 
-      $("conductoresUtilizados").textContent =
-        conductores?.utilizados ?? "—";
 
-      $("conductoresObservados").textContent =
-        conductores?.observados ??
-        conductoresObservados;
+      $("vehiculosActivos")
+        .textContent =
+          vehiculos.activos;
 
-      $("vehiculosActivos").textContent =
-        vehiculos?.activos ?? "—";
+      $("vehiculosUtilizados")
+        .textContent =
+          vehiculos.utilizados;
 
-      $("vehiculosUtilizados").textContent =
-        vehiculos?.utilizados ?? "—";
-
-      $("vehiculosObservados").textContent =
-        vehiculos?.observados ??
-        vehiculosObservados;
+      $("vehiculosObservados")
+        .textContent =
+          vehiculos.observados;
     }
 
 
     function obtenerDepuracion(datos) {
       if (
         datos?.depuracion_eremito &&
-        typeof datos.depuracion_eremito ===
+        typeof datos
+          .depuracion_eremito ===
           "object"
       ) {
-        return datos.depuracion_eremito;
+        return datos
+          .depuracion_eremito;
       }
 
       return datos;
@@ -1550,39 +1616,43 @@
       const depuracion =
         obtenerDepuracion(datos);
 
-      estado.datos.resumen = lista(
-        depuracion,
-        [
-          "resumen",
-          "resumen_general",
-          "totales"
-        ]
-      );
+      estado.datos.resumen =
+        lista(
+          depuracion,
+          [
+            "resumen",
+            "resumen_general",
+            "totales"
+          ]
+        );
 
-      estado.datos.empresas = lista(
-        depuracion,
-        [
-          "resumen_por_empresa",
-          "resumen_empresas",
-          "empresas"
-        ]
-      );
+      estado.datos.empresas =
+        lista(
+          depuracion,
+          [
+            "resumen_por_empresa",
+            "resumen_empresas",
+            "empresas"
+          ]
+        );
 
-      estado.datos.conductores = lista(
-        depuracion,
-        [
-          "conductores_observados",
-          "conductores"
-        ]
-      );
+      estado.datos.conductores =
+        lista(
+          depuracion,
+          [
+            "conductores_observados",
+            "conductores"
+          ]
+        );
 
-      estado.datos.vehiculos = lista(
-        depuracion,
-        [
-          "vehiculos_observados",
-          "vehiculos"
-        ]
-      );
+      estado.datos.vehiculos =
+        lista(
+          depuracion,
+          [
+            "vehiculos_observados",
+            "vehiculos"
+          ]
+        );
 
       llenarEmpresas();
       actualizarTarjetas();
@@ -1612,25 +1682,44 @@
 
 
     async function cargarDatos() {
-      $("actualizacion").textContent =
-        "Consultando…";
-
-      ocultarMensaje();
+      $("actualizacion")
+        .textContent =
+          "Consultando…";
 
       $("recargar").disabled = true;
 
+      ocultarMensaje();
+
       try {
-        const respuesta = await fetch(
-          `${API_URL}?_=${Date.now()}`,
-          {
-            cache: "no-store"
-          }
-        );
+        const respuesta =
+          await fetch(
+            `${API_URL}?_=${Date.now()}`,
+            {
+              cache: "no-store"
+            }
+          );
 
-        const datos =
-          await respuesta.json();
+        const contenido =
+          await respuesta.text();
 
-        if (!respuesta.ok || datos.ok === false) {
+        let datos;
+
+        try {
+          datos =
+            JSON.parse(contenido);
+
+        } catch {
+          throw new Error(
+            "La API no devolvió un JSON válido. " +
+            "Respuesta recibida: " +
+            contenido.slice(0, 100)
+          );
+        }
+
+        if (
+          !respuesta.ok ||
+          datos.ok === false
+        ) {
           throw new Error(
             datos.error ||
             `Error HTTP ${respuesta.status}`
@@ -1639,27 +1728,29 @@
 
         configurarDatos(datos);
 
-        $("actualizacion").textContent =
-          datos.actualizado
-            ? formatearFecha(
-                datos.actualizado
-              )
-            : new Date()
-                .toLocaleString(
-                  "es-UY",
-                  {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false
-                  }
-                );
+        $("actualizacion")
+          .textContent =
+            datos.actualizado
+              ? formatearFecha(
+                  datos.actualizado
+                )
+              : new Date()
+                  .toLocaleString(
+                    "es-UY",
+                    {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false
+                    }
+                  );
 
       } catch (error) {
-        $("actualizacion").textContent =
-          "Sin conexión";
+        $("actualizacion")
+          .textContent =
+            "Sin conexión";
 
         mostrarMensaje(
           error instanceof Error
@@ -1699,31 +1790,42 @@
     }
 
 
-    function valorCSV(fila, columna) {
-      if (columna.tipo === "accion_conductor") {
-        const cedula = valorDe(
-          fila,
-          [
-            "cedula_identidad",
-            "cedula",
-            "ci_eremito",
-            "identity_document"
-          ]
-        );
+    function valorCSV(
+      fila,
+      columna
+    ) {
+      if (
+        columna.tipo ===
+        "accion_conductor"
+      ) {
+        const cedula =
+          valorDe(
+            fila,
+            [
+              "cedula_identidad",
+              "cedula",
+              "ci_eremito",
+              "identity_document"
+            ]
+          );
 
         return cedula
           ? crearUrlConductor(cedula)
           : "";
       }
 
-      if (columna.tipo === "accion_vehiculo") {
-        const matricula = valorDe(
-          fila,
-          [
-            "matricula",
-            "matricula_limpia"
-          ]
-        );
+      if (
+        columna.tipo ===
+        "accion_vehiculo"
+      ) {
+        const matricula =
+          valorDe(
+            fila,
+            [
+              "matricula",
+              "matricula_limpia"
+            ]
+          );
 
         return matricula
           ? crearUrlVehiculo(matricula)
@@ -1731,7 +1833,10 @@
       }
 
       const valor =
-        valorDe(fila, columna.claves);
+        valorDe(
+          fila,
+          columna.claves
+        );
 
       return columna.tipo === "fecha"
         ? formatearFecha(valor)
@@ -1761,7 +1866,8 @@
           .map(
             columna =>
               escaparCSV(
-                columna.titulo === "ACCIÓN"
+                columna.titulo ===
+                  "ACCIÓN"
                   ? "ENLACE EREMITO"
                   : columna.titulo
               )
@@ -1788,30 +1894,33 @@
         "\uFEFF" +
         lineas.join("\r\n");
 
-      const archivo = new Blob(
-        [contenido],
-        {
-          type:
-            "text/csv;charset=utf-8"
-        }
-      );
+      const archivo =
+        new Blob(
+          [contenido],
+          {
+            type:
+              "text/csv;charset=utf-8"
+          }
+        );
+
+      const url =
+        URL.createObjectURL(archivo);
 
       const enlace =
         document.createElement("a");
 
-      enlace.href =
-        URL.createObjectURL(archivo);
+      enlace.href = url;
 
       enlace.download =
         `depuracion_eremito_${estado.tab}.csv`;
 
-      document.body.appendChild(enlace);
+      document.body
+        .appendChild(enlace);
+
       enlace.click();
       enlace.remove();
 
-      URL.revokeObjectURL(
-        enlace.href
-      );
+      URL.revokeObjectURL(url);
     }
 
 
