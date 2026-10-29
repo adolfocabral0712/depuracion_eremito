@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -26,8 +25,7 @@
             --amarillo-claro: #fff4d8;
             --azul: #146c94;
             --azul-claro: #e5f4fb;
-            --sombra:
-                0 8px 24px rgba(20, 63, 50, 0.10);
+            --sombra: 0 8px 24px rgba(20, 63, 50, 0.10);
         }
 
         * {
@@ -42,11 +40,7 @@
             margin: 0;
             color: var(--texto);
             background: var(--fondo);
-            font-family:
-                Inter,
-                "Segoe UI",
-                Arial,
-                sans-serif;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
         }
 
         button,
@@ -60,25 +54,18 @@
         }
 
         .contenedor {
-            width: min(
-                1500px,
-                calc(100% - 32px)
-            );
-
+            width: min(1500px, calc(100% - 32px));
             margin: 0 auto;
         }
 
         .encabezado {
-            padding: 28px 0;
+            padding: 24px 0;
             color: var(--blanco);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #123f32 0%,
-                    #246b53 100%
-                );
-
+            background: linear-gradient(
+                135deg,
+                #123f32 0%,
+                #246b53 100%
+            );
             box-shadow: var(--sombra);
         }
 
@@ -91,59 +78,49 @@
 
         .titulo-principal {
             margin: 0;
-            font-size: clamp(
-                25px,
-                4vw,
-                38px
-            );
+            font-size: clamp(25px, 4vw, 38px);
             line-height: 1.1;
         }
 
         .subtitulo {
-            margin: 10px 0 0;
+            margin: 8px 0 0;
             color: #d9eee5;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .actualizacion {
             min-width: 245px;
-            padding: 14px 18px;
+            padding: 12px 16px;
             text-align: center;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.25);
-
-            border-radius: 14px;
-
-            background:
-                rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.10);
         }
 
         .actualizacion-etiqueta {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: #d9eee5;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
             letter-spacing: 0.06em;
             text-transform: uppercase;
         }
 
         .actualizacion-valor {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
         }
 
         main {
-            padding: 24px 0 48px;
+            padding: 20px 0 40px;
         }
 
         .mensaje {
             display: none;
-            margin-bottom: 20px;
-            padding: 15px 18px;
-            border-radius: 12px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 10px;
             font-weight: 700;
             text-align: center;
         }
@@ -166,13 +143,13 @@
 
         .periodo {
             display: none;
-            margin-bottom: 22px;
-            padding: 14px 18px;
+            margin-bottom: 18px;
+            padding: 11px 16px;
             color: var(--verde-oscuro);
             border: 1px solid #b7d8c8;
-            border-radius: 14px;
+            border-radius: 12px;
             background: var(--verde-claro);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-align: center;
         }
@@ -183,31 +160,20 @@
 
         .tarjetas {
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    6,
-                    minmax(145px, 1fr)
-                );
-
-            gap: 14px;
-            margin-bottom: 22px;
+            grid-template-columns: repeat(6, minmax(145px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
         }
 
         .tarjeta {
-            min-height: 145px;
-            padding: 18px 14px;
-
+            min-height: 125px;
+            padding: 14px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
-            border:
-                1px solid
-                var(--borde);
-
-            border-radius: 16px;
+            border: 1px solid var(--borde);
+            border-radius: 14px;
             background: var(--blanco);
             box-shadow: var(--sombra);
             text-align: center;
@@ -223,24 +189,22 @@
         }
 
         .tarjeta-etiqueta {
-            min-height: 32px;
-
+            min-height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-
             color: var(--texto-suave);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 900;
             letter-spacing: 0.05em;
-            line-height: 1.3;
+            line-height: 1.25;
             text-transform: uppercase;
         }
 
         .tarjeta-valor {
-            margin: 9px 0 4px;
+            margin: 7px 0 3px;
             color: var(--verde-oscuro);
-            font-size: 34px;
+            font-size: 31px;
             font-weight: 900;
             line-height: 1;
         }
@@ -251,35 +215,30 @@
 
         .tarjeta-detalle {
             color: var(--texto-suave);
-            font-size: 12px;
-            line-height: 1.35;
+            font-size: 11px;
+            line-height: 1.25;
         }
 
         .pestanas {
             display: grid;
-            grid-template-columns:
-                repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 18px;
-            padding: 7px;
-
-            border:
-                1px solid
-                var(--borde);
-
-            border-radius: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 7px;
+            margin-bottom: 14px;
+            padding: 6px;
+            border: 1px solid var(--borde);
+            border-radius: 13px;
             background: var(--blanco);
             box-shadow: var(--sombra);
         }
 
         .pestana {
-            min-height: 48px;
-            padding: 10px;
+            min-height: 42px;
+            padding: 8px;
             color: var(--texto-suave);
             border: 0;
-            border-radius: 10px;
+            border-radius: 9px;
             background: transparent;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 900;
             text-align: center;
         }
@@ -287,83 +246,54 @@
         .pestana.activa {
             color: var(--blanco);
             background: var(--verde);
-
-            box-shadow:
-                0 5px 13px
-                rgba(36, 107, 83, 0.22);
+            box-shadow: 0 5px 13px rgba(36, 107, 83, 0.22);
         }
 
         .barra-filtros {
             display: grid;
-
             grid-template-columns:
                 minmax(220px, 1fr)
                 minmax(190px, 320px)
                 auto
                 auto;
-
-            gap: 10px;
-            margin-bottom: 18px;
-            padding: 14px;
-
-            border:
-                1px solid
-                var(--borde);
-
-            border-radius: 15px;
+            gap: 8px;
+            margin-bottom: 14px;
+            padding: 11px;
+            border: 1px solid var(--borde);
+            border-radius: 13px;
             background: var(--blanco);
             box-shadow: var(--sombra);
         }
 
         .campo {
-            min-height: 44px;
+            min-height: 40px;
             width: 100%;
-            padding: 10px 13px;
+            padding: 8px 11px;
             color: var(--texto);
-
-            border:
-                1px solid
-                var(--borde);
-
-            border-radius: 10px;
+            border: 1px solid var(--borde);
+            border-radius: 9px;
             outline: none;
             background: var(--blanco);
+            font-size: 13px;
         }
 
         .campo:focus {
             border-color: var(--verde);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(36, 107, 83, 0.12);
+            box-shadow: 0 0 0 3px rgba(36, 107, 83, 0.12);
         }
 
         .boton {
-            min-height: 44px;
-            padding: 10px 17px;
-
-            border:
-                1px solid
-                transparent;
-
-            border-radius: 10px;
+            min-height: 40px;
+            padding: 8px 14px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-size: 13px;
             font-weight: 800;
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
-        }
-
-        .boton:hover {
-            transform: translateY(-1px);
         }
 
         .boton-primario {
             color: var(--blanco);
             background: var(--verde);
-
-            box-shadow:
-                0 5px 14px
-                rgba(36, 107, 83, 0.22);
         }
 
         .boton-secundario {
@@ -384,41 +314,37 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            gap: 18px;
-            margin: 0 0 12px;
+            gap: 16px;
+            margin-bottom: 10px;
         }
 
         .cabecera-seccion h2 {
             margin: 0;
             color: var(--verde-oscuro);
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .cabecera-seccion p {
-            margin: 5px 0 0;
+            margin: 4px 0 0;
             color: var(--texto-suave);
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .contador {
             flex-shrink: 0;
-            padding: 8px 13px;
+            padding: 6px 11px;
             color: var(--verde-oscuro);
             border-radius: 999px;
             background: var(--verde-claro);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 900;
         }
 
         .tabla-contenedor {
             overflow: auto;
-            max-height: 64vh;
-
-            border:
-                1px solid
-                var(--borde);
-
-            border-radius: 15px;
+            max-height: 68vh;
+            border: 1px solid var(--borde);
+            border-radius: 13px;
             background: var(--blanco);
             box-shadow: var(--sombra);
         }
@@ -427,7 +353,7 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         thead {
@@ -437,18 +363,14 @@
         }
 
         th {
-            min-width: 115px;
-            padding: 13px 10px;
+            min-width: 105px;
+            padding: 7px 7px;
             color: var(--blanco);
-
-            border-right:
-                1px solid
-                rgba(255, 255, 255, 0.25);
-
+            border-right: 1px solid rgba(255, 255, 255, 0.25);
             background: var(--verde-oscuro);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 900;
-            line-height: 1.25;
+            line-height: 1.1;
             text-align: center;
             text-transform: uppercase;
             white-space: normal;
@@ -459,17 +381,12 @@
         }
 
         tbody td {
-            padding: 12px 10px;
-
-            border-right:
-                1px solid
-                #e4ebe7;
-
-            border-bottom:
-                1px solid
-                #e4ebe7;
-
+            padding: 5px 7px;
+            border-right: 1px solid #e4ebe7;
+            border-bottom: 1px solid #e4ebe7;
+            font-size: 12px;
             font-weight: 400;
+            line-height: 1.15;
             text-align: center;
             vertical-align: middle;
         }
@@ -495,12 +412,12 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 30px;
-            padding: 6px 11px;
+            min-height: 22px;
+            padding: 3px 7px;
             border-radius: 999px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 400;
-            line-height: 1.2;
+            line-height: 1.05;
             text-align: center;
         }
 
@@ -520,41 +437,32 @@
         }
 
         .sin-registros {
-            padding: 35px 15px;
+            padding: 25px 12px !important;
             color: var(--texto-suave);
             text-align: center;
             font-weight: 400;
         }
 
         .pie {
-            padding: 22px 16px;
+            padding: 18px 14px;
             color: var(--texto-suave);
-            font-size: 12px;
+            font-size: 11px;
             text-align: center;
         }
 
         @media (max-width: 1150px) {
             .tarjetas {
-                grid-template-columns:
-                    repeat(3, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .barra-filtros {
-                grid-template-columns:
-                    1fr 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (max-width: 760px) {
             .contenedor {
-                width: min(
-                    calc(100% - 20px),
-                    1500px
-                );
-            }
-
-            .encabezado {
-                padding: 22px 0;
+                width: min(calc(100% - 20px), 1500px);
             }
 
             .encabezado-contenido {
@@ -568,41 +476,24 @@
                 min-width: 0;
             }
 
-            main {
-                padding-top: 16px;
-            }
-
             .tarjetas {
-                grid-template-columns:
-                    repeat(2, 1fr);
-                gap: 10px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 9px;
             }
 
             .tarjeta {
-                min-height: 130px;
-                padding: 15px 10px;
+                min-height: 115px;
             }
 
-            .tarjeta-valor {
-                font-size: 30px;
-            }
-
-            .pestanas {
-                grid-template-columns: 1fr;
-            }
-
+            .pestanas,
             .barra-filtros {
                 grid-template-columns: 1fr;
             }
 
             .cabecera-seccion {
-                align-items: stretch;
                 flex-direction: column;
+                align-items: center;
                 text-align: center;
-            }
-
-            .contador {
-                align-self: center;
             }
 
             .tabla-contenedor {
@@ -628,39 +519,27 @@
 
             tbody {
                 display: grid;
-                gap: 12px;
+                gap: 9px;
             }
 
             tbody tr {
                 overflow: hidden;
-
-                border:
-                    1px solid
-                    var(--borde);
-
-                border-radius: 14px;
+                border: 1px solid var(--borde);
+                border-radius: 12px;
                 background: var(--blanco);
                 box-shadow: var(--sombra);
             }
 
             tbody td {
-                min-height: 45px;
-
+                min-height: 36px;
                 display: grid;
-
-                grid-template-columns:
-                    minmax(115px, 42%)
-                    1fr;
-
+                grid-template-columns: minmax(110px, 42%) 1fr;
                 align-items: center;
-                gap: 10px;
-                padding: 10px 12px;
+                gap: 8px;
+                padding: 7px 10px;
                 border-right: 0;
-
-                border-bottom:
-                    1px solid
-                    #e4ebe7;
-
+                border-bottom: 1px solid #e4ebe7;
+                font-size: 12px;
                 font-weight: 400;
                 text-align: right;
                 word-break: break-word;
@@ -669,10 +548,10 @@
             tbody td::before {
                 content: attr(data-label);
                 color: var(--texto-suave);
-                font-size: 10px;
+                font-size: 9px;
                 font-weight: 900;
                 letter-spacing: 0.04em;
-                line-height: 1.25;
+                line-height: 1.1;
                 text-align: left;
                 text-transform: uppercase;
             }
@@ -681,51 +560,14 @@
                 border-bottom: 0;
             }
 
-            tbody tr:hover td {
-                background: var(--blanco);
-            }
-
             .estado {
                 justify-self: end;
-                font-weight: 400;
             }
         }
 
         @media (max-width: 430px) {
             .tarjetas {
                 grid-template-columns: 1fr;
-            }
-
-            .tarjeta {
-                min-height: 120px;
-            }
-
-            tbody td {
-                grid-template-columns:
-                    minmax(105px, 43%)
-                    1fr;
-            }
-        }
-
-        @media print {
-            .pestanas,
-            .barra-filtros,
-            .boton {
-                display: none !important;
-            }
-
-            .seccion {
-                display: block !important;
-                margin-bottom: 25px;
-            }
-
-            .tabla-contenedor {
-                overflow: visible;
-                max-height: none;
-            }
-
-            body {
-                background: white;
             }
         }
     </style>
@@ -951,9 +793,7 @@
             >
                 <div class="cabecera-seccion">
                     <div>
-                        <h2>
-                            Conductores observados
-                        </h2>
+                        <h2>Conductores observados</h2>
 
                         <p>
                             Conductores activos sin utilización durante el período analizado.
@@ -972,35 +812,16 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>
-                                    Cédula
-                                </th>
-
-                                <th>
-                                    Nombre<br>conductor
-                                </th>
-
-                                <th>
-                                    Empresa<br>eRemito
-                                </th>
-
-                                <th>
-                                    Último<br>registro
-                                </th>
-
-                                <th>
-                                    Remitos<br>60 días
-                                </th>
-
-                                <th>
-                                    Estado<br>actividad
-                                </th>
+                                <th>Cédula</th>
+                                <th>Nombre<br>conductor</th>
+                                <th>Empresa<br>eRemito</th>
+                                <th>Último<br>registro</th>
+                                <th>Remitos<br>60 días</th>
+                                <th>Estado<br>actividad</th>
                             </tr>
                         </thead>
 
-                        <tbody
-                            id="tablaConductores"
-                        ></tbody>
+                        <tbody id="tablaConductores"></tbody>
                     </table>
                 </div>
             </section>
@@ -1011,9 +832,7 @@
             >
                 <div class="cabecera-seccion">
                     <div>
-                        <h2>
-                            Vehículos observados
-                        </h2>
+                        <h2>Vehículos observados</h2>
 
                         <p>
                             Camiones activos sin utilización durante el período analizado.
@@ -1032,31 +851,15 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>
-                                    Matrícula
-                                </th>
-
-                                <th>
-                                    Empresa<br>eRemito
-                                </th>
-
-                                <th>
-                                    Último<br>registro
-                                </th>
-
-                                <th>
-                                    Remitos<br>60 días
-                                </th>
-
-                                <th>
-                                    Estado<br>actividad
-                                </th>
+                                <th>Matrícula</th>
+                                <th>Empresa<br>eRemito</th>
+                                <th>Último<br>registro</th>
+                                <th>Remitos<br>60 días</th>
+                                <th>Estado<br>actividad</th>
                             </tr>
                         </thead>
 
-                        <tbody
-                            id="tablaVehiculos"
-                        ></tbody>
+                        <tbody id="tablaVehiculos"></tbody>
                     </table>
                 </div>
             </section>
@@ -1067,9 +870,7 @@
             >
                 <div class="cabecera-seccion">
                     <div>
-                        <h2>
-                            Resumen por empresa
-                        </h2>
+                        <h2>Resumen por empresa</h2>
 
                         <p>
                             Registros activos, utilizados y observados por empresa.
@@ -1088,39 +889,17 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>
-                                    Tipo
-                                </th>
-
-                                <th>
-                                    Empresa
-                                </th>
-
-                                <th>
-                                    Total<br>activos
-                                </th>
-
-                                <th>
-                                    Utilizados<br>60 días
-                                </th>
-
-                                <th>
-                                    Sin uso<br>60 días
-                                </th>
-
-                                <th>
-                                    A<br>revisar
-                                </th>
-
-                                <th>
-                                    Candidatos<br>depuración
-                                </th>
+                                <th>Tipo</th>
+                                <th>Empresa</th>
+                                <th>Total<br>activos</th>
+                                <th>Utilizados<br>60 días</th>
+                                <th>Sin uso<br>60 días</th>
+                                <th>A<br>revisar</th>
+                                <th>Candidatos<br>depuración</th>
                             </tr>
                         </thead>
 
-                        <tbody
-                            id="tablaEmpresas"
-                        ></tbody>
+                        <tbody id="tablaEmpresas"></tbody>
                     </table>
                 </div>
             </section>
@@ -1138,113 +917,32 @@
         let datosDepuracion = null;
         let seccionActiva = "conductores";
 
+        const $ = id =>
+            document.getElementById(id);
+
         const elementos = {
-            mensaje:
-                document.getElementById(
-                    "mensaje"
-                ),
-
-            ultimaActualizacion:
-                document.getElementById(
-                    "ultimaActualizacion"
-                ),
-
-            periodo:
-                document.getElementById(
-                    "periodo"
-                ),
-
-            tarjetas:
-                document.getElementById(
-                    "tarjetas"
-                ),
-
-            contenidoPrincipal:
-                document.getElementById(
-                    "contenidoPrincipal"
-                ),
-
-            buscador:
-                document.getElementById(
-                    "buscador"
-                ),
-
-            filtroEmpresa:
-                document.getElementById(
-                    "filtroEmpresa"
-                ),
-
-            botonActualizar:
-                document.getElementById(
-                    "botonActualizar"
-                ),
-
-            botonExportar:
-                document.getElementById(
-                    "botonExportar"
-                ),
-
-            tablaConductores:
-                document.getElementById(
-                    "tablaConductores"
-                ),
-
-            tablaVehiculos:
-                document.getElementById(
-                    "tablaVehiculos"
-                ),
-
-            tablaEmpresas:
-                document.getElementById(
-                    "tablaEmpresas"
-                ),
-
-            contadorConductores:
-                document.getElementById(
-                    "contadorConductores"
-                ),
-
-            contadorVehiculos:
-                document.getElementById(
-                    "contadorVehiculos"
-                ),
-
-            contadorEmpresas:
-                document.getElementById(
-                    "contadorEmpresas"
-                ),
-
-            conductoresActivos:
-                document.getElementById(
-                    "conductoresActivos"
-                ),
-
-            conductoresUtilizados:
-                document.getElementById(
-                    "conductoresUtilizados"
-                ),
-
-            conductoresObservados:
-                document.getElementById(
-                    "conductoresObservados"
-                ),
-
-            vehiculosActivos:
-                document.getElementById(
-                    "vehiculosActivos"
-                ),
-
-            vehiculosUtilizados:
-                document.getElementById(
-                    "vehiculosUtilizados"
-                ),
-
-            vehiculosObservados:
-                document.getElementById(
-                    "vehiculosObservados"
-                )
+            mensaje: $("mensaje"),
+            ultimaActualizacion: $("ultimaActualizacion"),
+            periodo: $("periodo"),
+            tarjetas: $("tarjetas"),
+            contenidoPrincipal: $("contenidoPrincipal"),
+            buscador: $("buscador"),
+            filtroEmpresa: $("filtroEmpresa"),
+            botonActualizar: $("botonActualizar"),
+            botonExportar: $("botonExportar"),
+            tablaConductores: $("tablaConductores"),
+            tablaVehiculos: $("tablaVehiculos"),
+            tablaEmpresas: $("tablaEmpresas"),
+            contadorConductores: $("contadorConductores"),
+            contadorVehiculos: $("contadorVehiculos"),
+            contadorEmpresas: $("contadorEmpresas"),
+            conductoresActivos: $("conductoresActivos"),
+            conductoresUtilizados: $("conductoresUtilizados"),
+            conductoresObservados: $("conductoresObservados"),
+            vehiculosActivos: $("vehiculosActivos"),
+            vehiculosUtilizados: $("vehiculosUtilizados"),
+            vehiculosObservados: $("vehiculosObservados")
         };
-
 
         function texto(
             valor,
@@ -1261,94 +959,57 @@
             return String(valor).trim();
         }
 
-
         function numero(valor) {
-            const convertido =
-                Number(valor);
+            const resultado = Number(valor);
 
-            if (
-                !Number.isFinite(convertido)
-            ) {
-                return 0;
-            }
-
-            return convertido;
+            return Number.isFinite(resultado)
+                ? resultado
+                : 0;
         }
-
 
         function normalizar(valor) {
             return texto(valor, "")
                 .normalize("NFD")
-                .replace(
-                    /[\u0300-\u036f]/g,
-                    ""
-                )
+                .replace(/[\u0300-\u036f]/g, "")
                 .toUpperCase();
         }
 
-
         function formatoFecha(valor) {
-            const fecha =
-                texto(valor, "");
+            const fecha = texto(valor, "");
 
             if (!fecha) {
                 return "-";
             }
 
-            const coincidencia =
-                fecha.match(
-                    /^(\d{4})-(\d{2})-(\d{2})/
-                );
+            const coincidencia = fecha.match(
+                /^(\d{4})-(\d{2})-(\d{2})/
+            );
 
-            if (coincidencia) {
-                return (
-                    coincidencia[3] +
-                    "/" +
-                    coincidencia[2] +
-                    "/" +
-                    coincidencia[1]
-                );
+            if (!coincidencia) {
+                return fecha;
             }
 
-            return fecha;
-        }
-
-
-        function escaparCsv(valor) {
-            const contenido =
-                texto(valor, "");
-
             return (
-                '"' +
-                contenido.replace(
-                    /"/g,
-                    '""'
-                ) +
-                '"'
+                coincidencia[3] +
+                "/" +
+                coincidencia[2] +
+                "/" +
+                coincidencia[1]
             );
         }
-
 
         function mostrarMensaje(
             mensaje,
             tipo = "info"
         ) {
-            elementos.mensaje.textContent =
-                mensaje;
-
+            elementos.mensaje.textContent = mensaje;
             elementos.mensaje.className =
                 "mensaje visible " + tipo;
         }
 
-
         function ocultarMensaje() {
-            elementos.mensaje.textContent =
-                "";
-
-            elementos.mensaje.className =
-                "mensaje";
+            elementos.mensaje.className = "mensaje";
         }
-
 
         function crearCelda(
             fila,
@@ -1359,22 +1020,12 @@
             const celda =
                 document.createElement("td");
 
-            celda.dataset.label =
-                etiqueta;
+            celda.dataset.label = etiqueta;
+            celda.textContent = texto(valor);
+            celda.className = clase;
 
-            celda.textContent =
-                texto(valor);
-
-            if (clase) {
-                celda.className =
-                    clase;
-            }
-
-            fila.appendChild(
-                celda
-            );
+            fila.appendChild(celda);
         }
-
 
         function crearCeldaEstado(
             fila,
@@ -1386,17 +1037,13 @@
             const estado =
                 document.createElement("span");
 
-            const contenido =
-                texto(valor);
+            const contenido = texto(valor);
 
             celda.dataset.label =
                 "Estado actividad";
 
-            estado.textContent =
-                contenido;
-
-            estado.className =
-                "estado";
+            estado.textContent = contenido;
+            estado.className = "estado";
 
             if (
                 normalizar(contenido)
@@ -1418,19 +1065,13 @@
                 );
             }
 
-            celda.appendChild(
-                estado
-            );
-
-            fila.appendChild(
-                celda
-            );
+            celda.appendChild(estado);
+            fila.appendChild(celda);
         }
 
-
         function mostrarSinRegistros(
-            cuerpoTabla,
-            cantidadColumnas
+            cuerpo,
+            columnas
         ) {
             const fila =
                 document.createElement("tr");
@@ -1438,66 +1079,37 @@
             const celda =
                 document.createElement("td");
 
-            celda.colSpan =
-                cantidadColumnas;
-
-            celda.className =
-                "sin-registros";
-
+            celda.colSpan = columnas;
+            celda.className = "sin-registros";
             celda.textContent =
                 "No hay registros para los filtros seleccionados.";
 
-            fila.appendChild(
-                celda
-            );
-
-            cuerpoTabla.appendChild(
-                fila
-            );
+            fila.appendChild(celda);
+            cuerpo.appendChild(fila);
         }
 
-
         function validarJson(datos) {
-            if (
-                !datos ||
-                typeof datos !== "object"
-            ) {
-                throw new Error(
-                    "El archivo JSON no es válido."
-                );
-            }
-
-            if (
-                !datos.depuracion_eremito
-            ) {
-                throw new Error(
-                    "El JSON no contiene depuracion_eremito."
-                );
-            }
-
             const depuracion =
-                datos.depuracion_eremito;
+                datos?.depuracion_eremito;
 
             if (
+                !depuracion ||
                 !depuracion.resumen ||
                 !Array.isArray(
                     depuracion.resumen_empresas
                 ) ||
                 !Array.isArray(
-                    depuracion
-                        .conductores_observados
+                    depuracion.conductores_observados
                 ) ||
                 !Array.isArray(
-                    depuracion
-                        .vehiculos_observados
+                    depuracion.vehiculos_observados
                 )
             ) {
                 throw new Error(
-                    "La sección depuracion_eremito está incompleta."
+                    "El JSON no contiene la sección de depuración esperada."
                 );
             }
         }
-
 
         async function cargarDatos() {
             mostrarMensaje(
@@ -1510,16 +1122,15 @@
                     ? "&"
                     : "?";
 
-            const respuesta =
-                await fetch(
-                    URL_JSON +
-                    separador +
-                    "_=" +
-                    Date.now(),
-                    {
-                        cache: "no-store"
-                    }
-                );
+            const respuesta = await fetch(
+                URL_JSON +
+                separador +
+                "_=" +
+                Date.now(),
+                {
+                    cache: "no-store"
+                }
+            );
 
             if (!respuesta.ok) {
                 throw new Error(
@@ -1562,40 +1173,29 @@
                     depuracion.resumen,
 
                 resumen_empresas:
-                    depuracion
-                        .resumen_empresas,
+                    depuracion.resumen_empresas,
 
                 conductores_observados:
-                    depuracion
-                        .conductores_observados,
+                    depuracion.conductores_observados,
 
                 vehiculos_observados:
-                    depuracion
-                        .vehiculos_observados
+                    depuracion.vehiculos_observados
             };
 
-            completarEncabezado();
+            completarCabecera();
             completarTarjetas();
             completarEmpresas();
             aplicarFiltros();
 
-            elementos.tarjetas.hidden =
-                false;
-
-            elementos
-                .contenidoPrincipal
-                .hidden = false;
+            elementos.tarjetas.hidden = false;
+            elementos.contenidoPrincipal.hidden = false;
 
             ocultarMensaje();
         }
 
-
-        function completarEncabezado() {
-            elementos
-                .ultimaActualizacion
-                .textContent =
-                    datosDepuracion
-                        .actualizado;
+        function completarCabecera() {
+            elementos.ultimaActualizacion.textContent =
+                datosDepuracion.actualizado;
 
             elementos.periodo.textContent =
                 "Período analizado: " +
@@ -1611,263 +1211,164 @@
             );
         }
 
-
         function completarTarjetas() {
-            const resumen =
-                datosDepuracion.resumen;
+            const r = datosDepuracion.resumen;
 
-            elementos
-                .conductoresActivos
-                .textContent =
-                    numero(
-                        resumen
-                            .conductores_activos
-                    );
+            elementos.conductoresActivos.textContent =
+                numero(r.conductores_activos);
 
-            elementos
-                .conductoresUtilizados
-                .textContent =
-                    numero(
-                        resumen
-                            .conductores_utilizados
-                    );
+            elementos.conductoresUtilizados.textContent =
+                numero(r.conductores_utilizados);
 
-            elementos
-                .conductoresObservados
-                .textContent =
-                    numero(
-                        resumen
-                            .conductores_observados
-                    );
+            elementos.conductoresObservados.textContent =
+                numero(r.conductores_observados);
 
-            elementos
-                .vehiculosActivos
-                .textContent =
-                    numero(
-                        resumen
-                            .vehiculos_activos
-                    );
+            elementos.vehiculosActivos.textContent =
+                numero(r.vehiculos_activos);
 
-            elementos
-                .vehiculosUtilizados
-                .textContent =
-                    numero(
-                        resumen
-                            .vehiculos_utilizados
-                    );
+            elementos.vehiculosUtilizados.textContent =
+                numero(r.vehiculos_utilizados);
 
-            elementos
-                .vehiculosObservados
-                .textContent =
-                    numero(
-                        resumen
-                            .vehiculos_observados
-                    );
+            elementos.vehiculosObservados.textContent =
+                numero(r.vehiculos_observados);
         }
 
-
         function completarEmpresas() {
-            const seleccionActual =
-                elementos
-                    .filtroEmpresa
-                    .value;
+            const empresas = new Set();
 
-            const empresas =
-                new Set();
+            datosDepuracion.resumen_empresas.forEach(
+                fila => {
+                    const empresa =
+                        texto(fila.empresa, "");
 
-            datosDepuracion
-                .resumen_empresas
-                .forEach(
-                    function(fila) {
-                        const empresa =
-                            texto(
-                                fila.empresa,
-                                ""
-                            );
-
-                        if (empresa) {
-                            empresas.add(
-                                empresa
-                            );
-                        }
+                    if (empresa) {
+                        empresas.add(empresa);
                     }
-                );
-
-            const lista =
-                Array.from(empresas)
-                    .sort(
-                        function(a, b) {
-                            return a.localeCompare(
-                                b,
-                                "es",
-                                {
-                                    sensitivity:
-                                        "base"
-                                }
-                            );
-                        }
-                    );
-
-            elementos
-                .filtroEmpresa
-                .innerHTML =
-                    '<option value="">' +
-                    'Todas las empresas' +
-                    '</option>';
-
-            lista.forEach(
-                function(empresa) {
-                    const opcion =
-                        document.createElement(
-                            "option"
-                        );
-
-                    opcion.value =
-                        empresa;
-
-                    opcion.textContent =
-                        empresa;
-
-                    elementos
-                        .filtroEmpresa
-                        .appendChild(opcion);
                 }
             );
 
-            if (
-                lista.includes(
-                    seleccionActual
-                )
-            ) {
-                elementos
-                    .filtroEmpresa
-                    .value =
-                        seleccionActual;
-            }
-        }
+            elementos.filtroEmpresa.innerHTML =
+                '<option value="">Todas las empresas</option>';
 
+            [...empresas]
+                .sort(
+                    (a, b) =>
+                        a.localeCompare(
+                            b,
+                            "es",
+                            {
+                                sensitivity: "base"
+                            }
+                        )
+                )
+                .forEach(
+                    empresa => {
+                        const opcion =
+                            document.createElement(
+                                "option"
+                            );
+
+                        opcion.value = empresa;
+                        opcion.textContent = empresa;
+
+                        elementos.filtroEmpresa.appendChild(
+                            opcion
+                        );
+                    }
+                );
+        }
 
         function coincideBusqueda(
             valores
         ) {
             const busqueda =
                 normalizar(
-                    elementos
-                        .buscador
-                        .value
+                    elementos.buscador.value
                 );
 
-            if (!busqueda) {
-                return true;
-            }
-
-            return valores.some(
-                function(valor) {
-                    return normalizar(
-                        valor
-                    ).includes(
-                        busqueda
-                    );
-                }
+            return (
+                !busqueda ||
+                valores.some(
+                    valor =>
+                        normalizar(valor)
+                            .includes(busqueda)
+                )
             );
         }
-
 
         function coincideEmpresa(
             empresa
         ) {
             const seleccion =
-                elementos
-                    .filtroEmpresa
-                    .value;
-
-            if (!seleccion) {
-                return true;
-            }
+                elementos.filtroEmpresa.value;
 
             return (
+                !seleccion ||
                 normalizar(empresa) ===
                 normalizar(seleccion)
             );
         }
 
-
-        function obtenerConductoresFiltrados() {
+        function conductoresFiltrados() {
             return datosDepuracion
                 .conductores_observados
                 .filter(
-                    function(fila) {
-                        return (
-                            coincideEmpresa(
-                                fila.contratista
-                            ) &&
-                            coincideBusqueda([
-                                fila.ci_eremito,
-                                fila.conductor_eremito,
-                                fila.contratista,
-                                fila.estado_actividad,
-                                fila.posible_coincidencia
-                            ])
-                        );
-                    }
+                    fila =>
+                        coincideEmpresa(
+                            fila.contratista
+                        ) &&
+                        coincideBusqueda([
+                            fila.ci_eremito,
+                            fila.conductor_eremito,
+                            fila.contratista,
+                            fila.estado_actividad
+                        ])
                 );
         }
 
-
-        function obtenerVehiculosFiltrados() {
+        function vehiculosFiltrados() {
             return datosDepuracion
                 .vehiculos_observados
                 .filter(
-                    function(fila) {
-                        return (
-                            coincideEmpresa(
-                                fila.contratista
-                            ) &&
-                            coincideBusqueda([
-                                fila.matricula,
-                                fila.matricula_limpia,
-                                fila.contratista,
-                                fila.estado_actividad
-                            ])
-                        );
-                    }
+                    fila =>
+                        coincideEmpresa(
+                            fila.contratista
+                        ) &&
+                        coincideBusqueda([
+                            fila.matricula,
+                            fila.matricula_limpia,
+                            fila.contratista,
+                            fila.estado_actividad
+                        ])
                 );
         }
 
-
-        function obtenerEmpresasFiltradas() {
+        function empresasFiltradas() {
             return datosDepuracion
                 .resumen_empresas
                 .filter(
-                    function(fila) {
-                        return (
-                            coincideEmpresa(
-                                fila.empresa
-                            ) &&
-                            coincideBusqueda([
-                                fila.tipo,
-                                fila.empresa
-                            ])
-                        );
-                    }
+                    fila =>
+                        coincideEmpresa(
+                            fila.empresa
+                        ) &&
+                        coincideBusqueda([
+                            fila.tipo,
+                            fila.empresa
+                        ])
                 );
         }
 
-
         function renderizarConductores() {
             const registros =
-                obtenerConductoresFiltrados();
+                conductoresFiltrados();
 
-            elementos
-                .tablaConductores
-                .innerHTML = "";
+            elementos.tablaConductores.innerHTML =
+                "";
 
             registros.forEach(
-                function(registro) {
+                registro => {
                     const fila =
-                        document.createElement(
-                            "tr"
-                        );
+                        document.createElement("tr");
 
                     crearCelda(
                         fila,
@@ -1879,8 +1380,7 @@
                     crearCelda(
                         fila,
                         "Nombre conductor",
-                        registro
-                            .conductor_eremito,
+                        registro.conductor_eremito,
                         "dato-principal"
                     );
 
@@ -1894,8 +1394,7 @@
                         fila,
                         "Último registro",
                         formatoFecha(
-                            registro
-                                .ultimo_registro
+                            registro.ultimo_registro
                         )
                     );
 
@@ -1913,46 +1412,39 @@
                         registro.estado_actividad
                     );
 
-                    elementos
-                        .tablaConductores
-                        .appendChild(fila);
+                    elementos.tablaConductores.appendChild(
+                        fila
+                    );
                 }
             );
 
             if (!registros.length) {
                 mostrarSinRegistros(
-                    elementos
-                        .tablaConductores,
+                    elementos.tablaConductores,
                     6
                 );
             }
 
-            elementos
-                .contadorConductores
-                .textContent =
-                    registros.length +
-                    (
-                        registros.length === 1
-                            ? " registro"
-                            : " registros"
-                    );
+            elementos.contadorConductores.textContent =
+                registros.length +
+                (
+                    registros.length === 1
+                        ? " registro"
+                        : " registros"
+                );
         }
-
 
         function renderizarVehiculos() {
             const registros =
-                obtenerVehiculosFiltrados();
+                vehiculosFiltrados();
 
-            elementos
-                .tablaVehiculos
-                .innerHTML = "";
+            elementos.tablaVehiculos.innerHTML =
+                "";
 
             registros.forEach(
-                function(registro) {
+                registro => {
                     const fila =
-                        document.createElement(
-                            "tr"
-                        );
+                        document.createElement("tr");
 
                     crearCelda(
                         fila,
@@ -1971,8 +1463,7 @@
                         fila,
                         "Último registro",
                         formatoFecha(
-                            registro
-                                .ultimo_registro
+                            registro.ultimo_registro
                         )
                     );
 
@@ -1990,46 +1481,39 @@
                         registro.estado_actividad
                     );
 
-                    elementos
-                        .tablaVehiculos
-                        .appendChild(fila);
+                    elementos.tablaVehiculos.appendChild(
+                        fila
+                    );
                 }
             );
 
             if (!registros.length) {
                 mostrarSinRegistros(
-                    elementos
-                        .tablaVehiculos,
+                    elementos.tablaVehiculos,
                     5
                 );
             }
 
-            elementos
-                .contadorVehiculos
-                .textContent =
-                    registros.length +
-                    (
-                        registros.length === 1
-                            ? " registro"
-                            : " registros"
-                    );
+            elementos.contadorVehiculos.textContent =
+                registros.length +
+                (
+                    registros.length === 1
+                        ? " registro"
+                        : " registros"
+                );
         }
-
 
         function renderizarEmpresas() {
             const registros =
-                obtenerEmpresasFiltradas();
+                empresasFiltradas();
 
-            elementos
-                .tablaEmpresas
-                .innerHTML = "";
+            elementos.tablaEmpresas.innerHTML =
+                "";
 
             registros.forEach(
-                function(registro) {
+                registro => {
                     const fila =
-                        document.createElement(
-                            "tr"
-                        );
+                        document.createElement("tr");
 
                     crearCelda(
                         fila,
@@ -2049,8 +1533,7 @@
                         fila,
                         "Total activos",
                         numero(
-                            registro
-                                .total_activos
+                            registro.total_activos
                         )
                     );
 
@@ -2090,31 +1573,27 @@
                         )
                     );
 
-                    elementos
-                        .tablaEmpresas
-                        .appendChild(fila);
+                    elementos.tablaEmpresas.appendChild(
+                        fila
+                    );
                 }
             );
 
             if (!registros.length) {
                 mostrarSinRegistros(
-                    elementos
-                        .tablaEmpresas,
+                    elementos.tablaEmpresas,
                     7
                 );
             }
 
-            elementos
-                .contadorEmpresas
-                .textContent =
-                    registros.length +
-                    (
-                        registros.length === 1
-                            ? " registro"
-                            : " registros"
-                    );
+            elementos.contadorEmpresas.textContent =
+                registros.length +
+                (
+                    registros.length === 1
+                        ? " registro"
+                        : " registros"
+                );
         }
-
 
         function aplicarFiltros() {
             if (!datosDepuracion) {
@@ -2126,97 +1605,75 @@
             renderizarEmpresas();
         }
 
-
         function cambiarSeccion(
             nombre
         ) {
             seccionActiva = nombre;
 
             document
-                .querySelectorAll(
-                    ".pestana"
-                )
+                .querySelectorAll(".pestana")
                 .forEach(
-                    function(boton) {
+                    boton => {
                         boton.classList.toggle(
                             "activa",
-                            boton.dataset
-                                .seccion === nombre
+                            boton.dataset.seccion === nombre
                         );
                     }
                 );
 
             document
-                .querySelectorAll(
-                    ".seccion"
-                )
+                .querySelectorAll(".seccion")
                 .forEach(
-                    function(seccion) {
+                    seccion =>
                         seccion.classList.remove(
                             "activa"
-                        );
-                    }
+                        )
                 );
 
             const secciones = {
                 conductores:
-                    document.getElementById(
-                        "seccionConductores"
-                    ),
-
+                    $("seccionConductores"),
                 vehiculos:
-                    document.getElementById(
-                        "seccionVehiculos"
-                    ),
-
+                    $("seccionVehiculos"),
                 empresas:
-                    document.getElementById(
-                        "seccionEmpresas"
-                    )
+                    $("seccionEmpresas")
             };
 
-            secciones[nombre]
-                .classList.add(
-                    "activa"
-                );
+            secciones[nombre].classList.add(
+                "activa"
+            );
 
-            const textos = {
+            const placeholders = {
                 conductores:
                     "Buscar conductor, cédula o empresa...",
-
                 vehiculos:
                     "Buscar matrícula o empresa...",
-
                 empresas:
                     "Buscar empresa o tipo..."
             };
 
-            elementos
-                .buscador
-                .placeholder =
-                    textos[nombre];
-
-            elementos
-                .buscador
-                .value = "";
+            elementos.buscador.value = "";
+            elementos.buscador.placeholder =
+                placeholders[nombre];
 
             aplicarFiltros();
         }
 
+        function escaparCsv(valor) {
+            return (
+                '"' +
+                texto(valor, "")
+                    .replace(/"/g, '""') +
+                '"'
+            );
+        }
 
         function exportarCsv() {
-            if (!datosDepuracion) {
-                return;
-            }
-
             let encabezados = [];
             let registros = [];
-            let nombreArchivo = "";
+            let nombre = "";
 
-            if (
-                seccionActiva ===
-                "conductores"
-            ) {
+            if (seccionActiva === "conductores") {
                 encabezados = [
                     "Cédula",
                     "Conductor",
@@ -2227,34 +1684,26 @@
                 ];
 
                 registros =
-                    obtenerConductoresFiltrados()
+                    conductoresFiltrados()
                         .map(
-                            function(fila) {
-                                return [
-                                    fila.ci_eremito,
-                                    fila
-                                        .conductor_eremito,
-                                    fila.contratista,
-                                    formatoFecha(
-                                        fila
-                                            .ultimo_registro
-                                    ),
-                                    fila
-                                        .cantidad_remitos_ultimos_60_dias,
-                                    fila
-                                        .estado_actividad
-                                ];
-                            }
+                            fila => [
+                                fila.ci_eremito,
+                                fila.conductor_eremito,
+                                fila.contratista,
+                                formatoFecha(
+                                    fila.ultimo_registro
+                                ),
+                                fila
+                                    .cantidad_remitos_ultimos_60_dias,
+                                fila.estado_actividad
+                            ]
                         );
 
-                nombreArchivo =
+                nombre =
                     "ConductoresObservadosEremito.csv";
             }
 
-            if (
-                seccionActiva ===
-                "vehiculos"
-            ) {
+            if (seccionActiva === "vehiculos") {
                 encabezados = [
                     "Matrícula",
                     "Empresa eRemito",
@@ -2264,32 +1713,25 @@
                 ];
 
                 registros =
-                    obtenerVehiculosFiltrados()
+                    vehiculosFiltrados()
                         .map(
-                            function(fila) {
-                                return [
-                                    fila.matricula,
-                                    fila.contratista,
-                                    formatoFecha(
-                                        fila
-                                            .ultimo_registro
-                                    ),
-                                    fila
-                                        .cantidad_remitos_ultimos_60_dias,
-                                    fila
-                                        .estado_actividad
-                                ];
-                            }
+                            fila => [
+                                fila.matricula,
+                                fila.contratista,
+                                formatoFecha(
+                                    fila.ultimo_registro
+                                ),
+                                fila
+                                    .cantidad_remitos_ultimos_60_dias,
+                                fila.estado_actividad
+                            ]
                         );
 
-                nombreArchivo =
+                nombre =
                     "VehiculosObservadosEremito.csv";
             }
 
-            if (
-                seccionActiva ===
-                "empresas"
-            ) {
+            if (seccionActiva === "empresas") {
                 encabezados = [
                     "Tipo",
                     "Empresa",
@@ -2301,162 +1743,113 @@
                 ];
 
                 registros =
-                    obtenerEmpresasFiltradas()
+                    empresasFiltradas()
                         .map(
-                            function(fila) {
-                                return [
-                                    fila.tipo,
-                                    fila.empresa,
-                                    fila
-                                        .total_activos,
-                                    fila
-                                        .utilizados_ultimos_60_dias,
-                                    fila
-                                        .sin_uso_ultimos_60_dias,
-                                    fila
-                                        .coincidencias_a_revisar,
-                                    fila
-                                        .candidatos_depuracion
-                                ];
-                            }
+                            fila => [
+                                fila.tipo,
+                                fila.empresa,
+                                fila.total_activos,
+                                fila
+                                    .utilizados_ultimos_60_dias,
+                                fila
+                                    .sin_uso_ultimos_60_dias,
+                                fila
+                                    .coincidencias_a_revisar,
+                                fila
+                                    .candidatos_depuracion
+                            ]
                         );
 
-                nombreArchivo =
+                nombre =
                     "ResumenDepuracionEremito.csv";
             }
 
-            const lineas = [
-                encabezados
-                    .map(escaparCsv)
-                    .join(";")
-            ];
-
-            registros.forEach(
-                function(registro) {
-                    lineas.push(
-                        registro
-                            .map(escaparCsv)
-                            .join(";")
-                    );
-                }
-            );
-
             const contenido =
                 "\uFEFF" +
-                lineas.join("\r\n");
+                [
+                    encabezados
+                        .map(escaparCsv)
+                        .join(";"),
 
-            const archivo =
-                new Blob(
-                    [contenido],
-                    {
-                        type:
-                            "text/csv;charset=utf-8"
-                    }
-                );
+                    ...registros.map(
+                        fila =>
+                            fila
+                                .map(escaparCsv)
+                                .join(";")
+                    )
+                ].join("\r\n");
+
+            const blob = new Blob(
+                [contenido],
+                {
+                    type:
+                        "text/csv;charset=utf-8"
+                }
+            );
+
+            const url =
+                URL.createObjectURL(blob);
 
             const enlace =
-                document.createElement(
-                    "a"
-                );
+                document.createElement("a");
 
-            const urlTemporal =
-                URL.createObjectURL(
-                    archivo
-                );
-
-            enlace.href =
-                urlTemporal;
-
-            enlace.download =
-                nombreArchivo;
-
-            document.body.appendChild(
-                enlace
-            );
-
+            enlace.href = url;
+            enlace.download = nombre;
             enlace.click();
-            enlace.remove();
 
-            URL.revokeObjectURL(
-                urlTemporal
-            );
+            URL.revokeObjectURL(url);
         }
 
+        elementos.buscador.addEventListener(
+            "input",
+            aplicarFiltros
+        );
 
-        elementos
-            .buscador
-            .addEventListener(
-                "input",
-                aplicarFiltros
-            );
+        elementos.filtroEmpresa.addEventListener(
+            "change",
+            aplicarFiltros
+        );
 
+        elementos.botonActualizar.addEventListener(
+            "click",
+            () => {
+                cargarDatos().catch(
+                    error => {
+                        console.error(error);
 
-        elementos
-            .filtroEmpresa
-            .addEventListener(
-                "change",
-                aplicarFiltros
-            );
+                        mostrarMensaje(
+                            error.message,
+                            "error"
+                        );
+                    }
+                );
+            }
+        );
 
-
-        elementos
-            .botonActualizar
-            .addEventListener(
-                "click",
-                function() {
-                    cargarDatos().catch(
-                        function(error) {
-                            console.error(
-                                error
-                            );
-
-                            mostrarMensaje(
-                                error.message,
-                                "error"
-                            );
-                        }
-                    );
-                }
-            );
-
-
-        elementos
-            .botonExportar
-            .addEventListener(
-                "click",
-                exportarCsv
-            );
-
+        elementos.botonExportar.addEventListener(
+            "click",
+            exportarCsv
+        );
 
         document
-            .querySelectorAll(
-                ".pestana"
-            )
+            .querySelectorAll(".pestana")
             .forEach(
-                function(boton) {
+                boton => {
                     boton.addEventListener(
                         "click",
-                        function() {
-                            cambiarSeccion(
-                                boton.dataset
-                                    .seccion
-                            );
-                        }
+                        () => cambiarSeccion(
+                            boton.dataset.seccion
+                        )
                     );
                 }
             );
 
-
         cargarDatos().catch(
-            function(error) {
-                console.error(
-                    error
-                );
+            error => {
+                console.error(error);
 
-                elementos
-                    .ultimaActualizacion
-                    .textContent =
-                        "Error de carga";
+                elementos.ultimaActualizacion.textContent =
+                    "Error de carga";
 
                 mostrarMensaje(
                     error.message,
