@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="theme-color"
+    content="#164d3c"
+  >
+
+  <title>Depuración eRemito</title>
+
+  <style>
+    :root {
+      --verde-oscuro: #164d3c;
+      --verde: #267357;
+      --verde-claro: #e1f1e9;
+      --verde-fondo: #edf5f1;
+      --blanco: #ffffff;
+      --texto: #163029;
+      --muted: #64756e;
+      --borde: #d3dfd9;
+      --rojo: #c62828;
+      --rojo-claro: #fff2f2;
+      --amarillo: #a86b00;
+      --amarillo-claro: #fff5d9;
+      --azul: #236ca5;
+      --azul-claro: #e8f3fb;
+      --sombra:
+        0 8px 24px rgba(18, 62, 48, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(
+          180deg,
+          #f5faf7 0,
+          var(--verde-fondo) 100%
+        );
+      color: var(--texto);
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .encabezado {
+      background:
+        linear-gradient(
+          135deg,
+          #164d3c,
+          #267357
+        );
+      color: var(--blanco);
+      padding: 22px 24px;
+    }
+
+    .encabezado-contenido {
+      width: min(1500px, 100%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2.15rem);
+    }
+
+    .subtitulo {
+      margin-top: 7px;
+      opacity: 0.92;
+      font-size: 0.94rem;
+    }
+
+    .actualizacion {
+      flex: 0 0 auto;
+      min-width: 245px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      text-align: center;
+    }
+
+    .actualizacion span {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+    }
+
+    .actualizacion strong {
+      font-size: 0.88rem;
+    }
+
+    main {
+      width: min(1500px, 100%);
+      margin: auto;
+      padding: 18px;
+    }
+
+    .mensaje {
+      display: none;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    .mensaje.visible {
+      display: block;
+    }
+
+    .mensaje.error {
+      color: #871f1f;
+      border: 1px solid #efbaba;
+      background: var(--rojo-claro);
+    }
+
+    .mensaje.info {
+      color: #244e3e;
+      border: 1px solid #bcd8cb;
+      background: var(--verde-claro);
+    }
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns:
+        repeat(6, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tarjeta {
+      min-height: 108px;
+      border: 1px solid var(--borde);
+      border-radius: 15px;
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+      padding: 13px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tarjeta.etiqueta-roja {
+      border-color: #efb7b7;
+      background: var(--rojo-claro);
+    }
+
+    .tarjeta.etiqueta-amarilla {
+      border-color: #ecd394;
+      background: var(--amarillo-claro);
+    }
+
+    .tarjeta-titulo {
+      min-height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .tarjeta-valor {
+      margin-top: 5px;
+      color: var(--verde-oscuro);
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .etiqueta-roja .tarjeta-valor {
+      color: var(--rojo);
+    }
+
+    .etiqueta-amarilla .tarjeta-valor {
+      color: var(--amarillo);
+    }
+
+    .panel {
+      overflow: hidden;
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .pestanas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      padding: 8px;
+      border-bottom: 1px solid var(--borde);
+      background: #f9fbfa;
+    }
+
+    .pestana {
+      min-height: 42px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      color: #5d6d66;
+      cursor: pointer;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .pestana.activa {
+      background: var(--verde);
+      color: var(--blanco);
+      box-shadow:
+        0 5px 12px rgba(25, 91, 68, 0.2);
+    }
+
+    .herramientas {
+      display: grid;
+      grid-template-columns:
+        minmax(250px, 1fr)
+        minmax(200px, 320px)
+        auto
+        auto;
+      gap: 8px;
+      align-items: end;
+      padding: 10px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .campo label {
+      display: block;
+      margin: 0 0 4px 2px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .campo input,
+    .campo select {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid #cdd9d3;
+      border-radius: 9px;
+      outline: none;
+      background: var(--blanco);
+      color: var(--texto);
+      padding: 7px 10px;
+    }
+
+    .campo input:focus,
+    .campo select:focus {
+      border-color: var(--verde);
+      box-shadow:
+        0 0 0 3px rgba(38, 115, 87, 0.12);
+    }
+
+    .boton {
+      min-height: 38px;
+      border: 1px solid var(--verde);
+      border-radius: 9px;
+      cursor: pointer;
+      padding: 7px 13px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .boton-verde {
+      background: var(--verde);
+      color: var(--blanco);
+    }
+
+    .boton-blanco {
+      background: var(--blanco);
+      color: var(--verde-oscuro);
+    }
+
+    .estado-tabla {
+      min-height: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 7px 12px;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .contenedor-tabla {
+      max-height: 600px;
+      overflow: auto;
+      border-top: 1px solid var(--borde);
+      scrollbar-width: auto;
+      scrollbar-color: #7b9187 #edf2ef;
+    }
+
+    .contenedor-tabla::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    .contenedor-tabla::-webkit-scrollbar-track {
+      background: #edf2ef;
+    }
+
+    .contenedor-tabla::-webkit-scrollbar-thumb {
+      border: 2px solid #edf2ef;
+      border-radius: 10px;
+      background: #7b9187;
+    }
+
+    table {
+      width: 100%;
+      min-width: 930px;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      height: 38px;
+      border-right: 1px solid rgba(255, 255, 255, 0.45);
+      background: var(--verde-oscuro);
+      color: var(--blanco);
+      padding: 5px 7px;
+      text-align: center;
+      font-size: 0.66rem;
+      font-weight: 700;
+      line-height: 1.15;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    td {
+      height: 29px;
+      border-right: 1px solid #e1e8e4;
+      border-bottom: 1px solid #e1e8e4;
+      padding: 3px 6px;
+      text-align: center;
+      font-size: 0.71rem;
+      font-weight: 400;
+      line-height: 1.15;
+      vertical-align: middle;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f8fbf9;
+    }
+
+    tbody tr:hover {
+      background: #edf6f1;
+    }
+
+    td:last-child,
+    th:last-child {
+      border-right: 0;
+    }
+
+    .sin-datos {
+      height: 85px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .estado {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 22px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 0.63rem;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .estado-rojo {
+      color: #9d1e1e;
+      background: #fde0e0;
+    }
+
+    .estado-amarillo {
+      color: #835500;
+      background: #ffefbf;
+    }
+
+    .estado-verde {
+      color: #13593f;
+      background: #dcefe6;
+    }
+
+    .enlace-editar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 25px;
+      border: 1px solid var(--verde);
+      border-radius: 7px;
+      background: var(--verde);
+      color: var(--blanco);
+      padding: 4px 8px;
+      text-decoration: none;
+      font-size: 0.62rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    footer {
+      margin-top: 17px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 1150px) {
+      .tarjetas {
+        grid-template-columns:
+          repeat(3, minmax(150px, 1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .encabezado-contenido {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .actualizacion {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .tarjetas {
+        grid-template-columns:
+          repeat(2, minmax(135px, 1fr));
+      }
+
+      .herramientas {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .boton {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .encabezado {
+        padding: 17px 14px;
+      }
+
+      .encabezado-contenido {
+        text-align: center;
+      }
+
+      main {
+        padding: 11px 8px 25px;
+      }
+
+      .tarjetas {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .tarjeta {
+        min-height: 91px;
+        padding: 9px 5px;
+      }
+
+      .tarjeta-titulo {
+        min-height: 27px;
+        font-size: 0.59rem;
+      }
+
+      .tarjeta-valor {
+        font-size: 1.5rem;
+      }
+
+      .pestanas {
+        grid-template-columns: 1fr;
+      }
+
+      .herramientas {
+        grid-template-columns: 1fr;
+      }
+
+      .estado-tabla {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+
+      .contenedor-tabla {
+        max-height: none;
+        overflow: visible;
+        padding: 8px;
+        background: #eef5f1;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      table {
+        min-width: 0;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        overflow: hidden;
+        margin-bottom: 9px;
+        border: 1px solid var(--borde);
+        border-radius: 11px;
+        background: var(--blanco) !important;
+        box-shadow:
+          0 3px 10px rgba(18, 62, 48, 0.06);
+      }
+
+      td {
+        min-height: 30px;
+        height: auto;
+        display: grid;
+        grid-template-columns: 42% 58%;
+        align-items: center;
+        border-right: 0;
+        padding: 5px 7px;
+        text-align: left;
+        font-size: 0.7rem;
+      }
+
+      td::before {
+        content: attr(data-label);
+        color: var(--verde-oscuro);
+        font-size: 0.61rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      td > * {
+        justify-self: center;
+      }
+
+      td.sin-datos {
+        display: block;
+        padding: 28px 10px;
+        text-align: center;
+      }
+
+      td.sin-datos::before {
+        display: none;
+      }
+
+      .enlace-editar {
+        width: 100%;
+        max-width: 145px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="encabezado">
+    <div class="encabezado-contenido">
+      <div>
+        <h1>Depuración eRemito</h1>
+
+        <div class="subtitulo">
+          Conductores y vehículos activos sin utilización
+          durante los últimos 60 días
+        </div>
+      </div>
+
+      <div class="actualizacion">
+        <span>ÚLTIMA ACTUALIZACIÓN</span>
+        <strong id="actualizacion">Consultando…</strong>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div
+      id="mensaje"
+      class="mensaje"
+    ></div>
+
+    <section
+      class="tarjetas"
+      aria-label="Resumen de depuración"
+    >
+      <article class="tarjeta">
+        <div class="tarjeta-titulo">
+          Conductores activos
+        </div>
+
+        <div
+          id="conductoresActivos"
+          class="tarjeta-valor"
+        >
+          —
+        </div>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta-titulo">
+          Conductores utilizados
+        </div>
+
+        <div
+          id="conductoresUtilizados"
+          class="tarjeta-valor"
+        >
+          —
+        </div>
+      </article>
+
+      <article class="tarjeta etiqueta-roja">
+        <div class="tarjeta-titulo">
+          Conductores observados
+        </div>
+
+        <div
+          id="conductoresObservados"
+          class="tarjeta-valor"
+        >
+          —
+        </div>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta-titulo">
+          Vehículos activos
+        </div>
+
+        <div
+          id="vehiculosActivos"
+          class="tarjeta-valor"
+        >
+          —
+        </div>
+      </article>
+
+      <article class="tarjeta">
+        <div class="tarjeta-titulo">
+          Vehículos utilizados
+        </div>
+
+        <div
+          id="vehiculosUtilizados"
+          class="tarjeta-valor"
+        >
+          —
+        </div>
+      </article>
+
+      <article class="tarjeta etiqueta-roja">
+        <div class="tarjeta-titulo">
+          Vehículos observados
+        </div>
+
+        <div
+          id="vehiculosObservados"
+          class="tarjeta-valor"
+        >
+          —
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <nav
+        class="pestanas"
+        aria-label="Secciones"
+      >
+        <button
+          class="pestana activa"
+          type="button"
+          data-tab="conductores"
+        >
+          CONDUCTORES OBSERVADOS
+        </button>
+
+        <button
+          class="pestana"
+          type="button"
+          data-tab="vehiculos"
+        >
+          VEHÍCULOS OBSERVADOS
+        </button>
+
+        <button
+          class="pestana"
+          type="button"
+          data-tab="empresas"
+        >
+          RESUMEN POR EMPRESA
+        </button>
+      </nav>
+
+      <div class="herramientas">
+        <div class="campo">
+          <label for="buscar">
+            Buscar
+          </label>
+
+          <input
+            id="buscar"
+            type="search"
+            placeholder="Nombre, cédula, matrícula, empresa…"
+          >
+        </div>
+
+        <div class="campo">
+          <label for="empresa">
+            Empresa
+          </label>
+
+          <select id="empresa">
+            <option value="">
+              Todas las empresas
+            </option>
+          </select>
+        </div>
+
+        <button
+          id="recargar"
+          class="boton boton-blanco"
+          type="button"
+        >
+          ACTUALIZAR
+        </button>
+
+        <button
+          id="exportar"
+          class="boton boton-verde"
+          type="button"
+        >
+          EXPORTAR CSV
+        </button>
+      </div>
+
+      <div class="estado-tabla">
+        <span id="cantidad">
+          Mostrando 0 registros
+        </span>
+
+        <span>
+          Período de control: últimos 60 días
+        </span>
+      </div>
+
+      <div class="contenedor-tabla">
+        <table>
+          <thead id="encabezadoTabla"></thead>
+          <tbody id="cuerpoTabla"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Control de registros activos de eRemito
+    </footer>
+  </main>
+
+  <script>
+    const API_URL = "/api/datos";
+
+    const estado = {
+      datos: {
+        resumen: [],
+        empresas: [],
+        conductores: [],
+        vehiculos: []
+      },
+
+      tab: "conductores",
+      filtroTexto: "",
+      filtroEmpresa: ""
+    };
+
+
+    const columnas = {
+      conductores: [
+        {
+          titulo: "CÉDULA",
+          claves: [
+            "cedula_identidad",
+            "cedula",
+            "ci_eremito",
+            "identity_document"
+          ]
+        },
+        {
+          titulo: "CONDUCTOR",
+          claves: [
+            "conductor",
+            "nombre_conductor",
+            "nombre",
+            "chofer"
+          ]
+        },
+        {
+          titulo: "EMPRESA",
+          claves: [
+            "empresa",
+            "contratista"
+          ]
+        },
+        {
+          titulo: "ÚLTIMO USO",
+          claves: [
+            "ultimo_registro",
+            "ultimo_uso",
+            "ultima_fecha"
+          ],
+          tipo: "fecha"
+        },
+        {
+          titulo: "VIAJES",
+          claves: [
+            "cantidad_registros",
+            "cantidad_usos",
+            "viajes",
+            "usos"
+          ]
+        },
+        {
+          titulo: "DÍAS SIN USO",
+          claves: [
+            "dias_sin_uso",
+            "dias"
+          ]
+        },
+        {
+          titulo: "ESTADO",
+          claves: [
+            "estado_depuracion",
+            "estado",
+            "resultado"
+          ],
+          tipo: "estado"
+        },
+        {
+          titulo: "ACCIÓN",
+          tipo: "accion_conductor"
+        }
+      ],
+
+      vehiculos: [
+        {
+          titulo: "MATRÍCULA",
+          claves: [
+            "matricula",
+            "matricula_limpia"
+          ]
+        },
+        {
+          titulo: "EMPRESA",
+          claves: [
+            "empresa",
+            "contratista"
+          ]
+        },
+        {
+          titulo: "ÚLTIMO USO",
+          claves: [
+            "ultimo_registro",
+            "ultimo_uso",
+            "ultima_fecha"
+          ],
+          tipo: "fecha"
+        },
+        {
+          titulo: "VIAJES",
+          claves: [
+            "cantidad_registros",
+            "cantidad_usos",
+            "viajes",
+            "usos"
+          ]
+        },
+        {
+          titulo: "DÍAS SIN USO",
+          claves: [
+            "dias_sin_uso",
+            "dias"
+          ]
+        },
+        {
+          titulo: "ESTADO",
+          claves: [
+            "estado_depuracion",
+            "estado",
+            "resultado"
+          ],
+          tipo: "estado"
+        },
+        {
+          titulo: "ACCIÓN",
+          tipo: "accion_vehiculo"
+        }
+      ],
+
+      empresas: [
+        {
+          titulo: "TIPO",
+          claves: [
+            "tipo"
+          ]
+        },
+        {
+          titulo: "EMPRESA",
+          claves: [
+            "empresa"
+          ]
+        },
+        {
+          titulo: "TOTAL ACTIVOS",
+          claves: [
+            "total_activos"
+          ]
+        },
+        {
+          titulo: "UTILIZADOS ÚLTIMOS 60 DÍAS",
+          claves: [
+            "utilizados_ultimos_60_dias",
+            "utilizados"
+          ]
+        },
+        {
+          titulo: "SIN USO ÚLTIMOS 60 DÍAS",
+          claves: [
+            "sin_uso_ultimos_60_dias",
+            "sin_uso"
+          ]
+        },
+        {
+          titulo: "A REVISAR",
+          claves: [
+            "coincidencias_a_revisar",
+            "a_revisar"
+          ]
+        },
+        {
+          titulo: "CANDIDATOS DEPURACIÓN",
+          claves: [
+            "candidatos_depuracion",
+            "candidatos"
+          ]
+        }
+      ]
+    };
+
+
+    const $ = id =>
+      document.getElementById(id);
+
+
+    function texto(valor) {
+      if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+      ) {
+        return "—";
+      }
+
+      return String(valor).trim() || "—";
+    }
+
+
+    function valorDe(fila, claves = []) {
+      for (const clave of claves) {
+        if (
+          Object.prototype.hasOwnProperty.call(
+            fila,
+            clave
+          ) &&
+          fila[clave] !== null &&
+          fila[clave] !== undefined &&
+          fila[clave] !== ""
+        ) {
+          return fila[clave];
+        }
+      }
+
+      return "";
+    }
+
+
+    function numero(valor) {
+      const convertido = Number(valor);
+
+      return Number.isFinite(convertido)
+        ? convertido
+        : 0;
+    }
+
+
+    function normalizar(valor) {
+      return String(valor ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+    }
+
+
+    function lista(objeto, claves) {
+      for (const clave of claves) {
+        if (Array.isArray(objeto?.[clave])) {
+          return objeto[clave];
+        }
+      }
+
+      return [];
+    }
+
+
+    function escaparHTML(valor) {
+      return String(valor ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+
+    function formatearFecha(valor) {
+      if (!valor) {
+        return "—";
+      }
+
+      const soloFecha =
+        String(valor).match(
+          /^(\d{4})-(\d{2})-(\d{2})$/
+        );
+
+      if (soloFecha) {
+        return (
+          `${soloFecha[3]}/` +
+          `${soloFecha[2]}/` +
+          `${soloFecha[1]}`
+        );
+      }
+
+      const fecha = new Date(valor);
+
+      if (Number.isNaN(fecha.getTime())) {
+        return texto(valor);
+      }
+
+      const incluyeHora =
+        String(valor).includes("T") ||
+        String(valor).includes(" ");
+
+      return fecha.toLocaleString(
+        "es-UY",
+        incluyeHora
+          ? {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false
+            }
+          : {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric"
+            }
+      );
+    }
+
+
+    function crearUrlConductor(cedula) {
+      const url = new URL(
+        "https://remitoelectronico.uy/frontend/driver/"
+      );
+
+      url.search = new URLSearchParams({
+        first_name: "",
+        last_name: "",
+        identity_document:
+          String(cedula ?? "").trim(),
+        contractor_fk: ""
+      }).toString();
+
+      return url.href;
+    }
+
+
+    function crearUrlVehiculo(matricula) {
+      const url = new URL(
+        "https://remitoelectronico.uy/frontend/vehicle/"
+      );
+
+      url.search = new URLSearchParams({
+        plate:
+          String(matricula ?? "").trim(),
+        vehicle_type: "",
+        model: "",
+        active: "",
+        contractor_fk: ""
+      }).toString();
+
+      return url.href;
+    }
+
+
+    function claseEstado(valor) {
+      const estadoNormalizado =
+        normalizar(valor);
+
+      if (
+        estadoNormalizado.includes("nunca") ||
+        estadoNormalizado.includes("sin uso") ||
+        estadoNormalizado.includes("depuracion")
+      ) {
+        return "estado-rojo";
+      }
+
+      if (
+        estadoNormalizado.includes("revisar") ||
+        estadoNormalizado.includes("coincidencia")
+      ) {
+        return "estado-amarillo";
+      }
+
+      return "estado-verde";
+    }
+
+
+    function empresaFila(fila) {
+      return texto(
+        valorDe(
+          fila,
+          [
+            "empresa",
+            "contratista"
+          ]
+        )
+      );
+    }
+
+
+    function registrosActuales() {
+      if (estado.tab === "conductores") {
+        return estado.datos.conductores;
+      }
+
+      if (estado.tab === "vehiculos") {
+        return estado.datos.vehiculos;
+      }
+
+      return estado.datos.empresas;
+    }
+
+
+    function registrosFiltrados() {
+      const busqueda =
+        normalizar(estado.filtroTexto);
+
+      const empresaSeleccionada =
+        normalizar(estado.filtroEmpresa);
+
+      return registrosActuales().filter(
+        fila => {
+          const textoFila =
+            normalizar(
+              Object.values(fila)
+                .filter(
+                  valor =>
+                    valor !== null &&
+                    valor !== undefined
+                )
+                .join(" ")
+            );
+
+          const coincideTexto =
+            !busqueda ||
+            textoFila.includes(busqueda);
+
+          const coincideEmpresa =
+            !empresaSeleccionada ||
+            normalizar(
+              empresaFila(fila)
+            ) === empresaSeleccionada;
+
+          return (
+            coincideTexto &&
+            coincideEmpresa
+          );
+        }
+      );
+    }
+
+
+    function celdaHTML(fila, columna) {
+      if (columna.tipo === "accion_conductor") {
+        const cedula = valorDe(
+          fila,
+          [
+            "cedula_identidad",
+            "cedula",
+            "ci_eremito",
+            "identity_document"
+          ]
+        );
+
+        if (!cedula) {
+          return "—";
+        }
+
+        return `
+          <a
+            class="enlace-editar"
+            href="${escaparHTML(
+              crearUrlConductor(cedula)
+            )}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BUSCAR / EDITAR
+          </a>
+        `;
+      }
+
+      if (columna.tipo === "accion_vehiculo") {
+        const matricula = valorDe(
+          fila,
+          [
+            "matricula",
+            "matricula_limpia"
+          ]
+        );
+
+        if (!matricula) {
+          return "—";
+        }
+
+        return `
+          <a
+            class="enlace-editar"
+            href="${escaparHTML(
+              crearUrlVehiculo(matricula)
+            )}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BUSCAR / EDITAR
+          </a>
+        `;
+      }
+
+      const valor =
+        valorDe(fila, columna.claves);
+
+      if (columna.tipo === "fecha") {
+        return escaparHTML(
+          formatearFecha(valor)
+        );
+      }
+
+      if (columna.tipo === "estado") {
+        return `
+          <span
+            class="estado ${claseEstado(valor)}"
+          >
+            ${escaparHTML(texto(valor))}
+          </span>
+        `;
+      }
+
+      return escaparHTML(texto(valor));
+    }
+
+
+    function renderizarTabla() {
+      const definicion =
+        columnas[estado.tab];
+
+      const filas =
+        registrosFiltrados();
+
+      $("encabezadoTabla").innerHTML = `
+        <tr>
+          ${definicion
+            .map(
+              columna =>
+                `<th>${escaparHTML(
+                  columna.titulo
+                )}</th>`
+            )
+            .join("")}
+        </tr>
+      `;
+
+      if (!filas.length) {
+        $("cuerpoTabla").innerHTML = `
+          <tr>
+            <td
+              class="sin-datos"
+              colspan="${definicion.length}"
+            >
+              No hay registros para mostrar.
+            </td>
+          </tr>
+        `;
+      } else {
+        $("cuerpoTabla").innerHTML =
+          filas
+            .map(
+              fila => `
+                <tr>
+                  ${definicion
+                    .map(
+                      columna => `
+                        <td
+                          data-label="${escaparHTML(
+                            columna.titulo
+                          )}"
+                        >
+                          ${celdaHTML(
+                            fila,
+                            columna
+                          )}
+                        </td>
+                      `
+                    )
+                    .join("")}
+                </tr>
+              `
+            )
+            .join("");
+      }
+
+      $("cantidad").textContent =
+        `Mostrando ${filas.length} de ` +
+        `${registrosActuales().length} registros`;
+    }
+
+
+    function llenarEmpresas() {
+      const actual =
+        estado.filtroEmpresa;
+
+      const empresas = [
+        ...new Set(
+          [
+            ...estado.datos.conductores,
+            ...estado.datos.vehiculos,
+            ...estado.datos.empresas
+          ]
+            .map(empresaFila)
+            .filter(
+              empresa =>
+                empresa &&
+                empresa !== "—"
+            )
+        )
+      ].sort(
+        (a, b) =>
+          a.localeCompare(
+            b,
+            "es",
+            {
+              sensitivity: "base"
+            }
+          )
+      );
+
+      $("empresa").innerHTML = `
+        <option value="">
+          Todas las empresas
+        </option>
+
+        ${empresas
+          .map(
+            empresa => `
+              <option value="${escaparHTML(
+                empresa
+              )}">
+                ${escaparHTML(empresa)}
+              </option>
+            `
+          )
+          .join("")}
+      `;
+
+      $("empresa").value = actual;
+    }
+
+
+    function totalesDesdeResumen(tipo) {
+      const fila =
+        estado.datos.resumen.find(
+          registro =>
+            normalizar(
+              registro.tipo
+            ).includes(
+              normalizar(tipo)
+            )
+        );
+
+      if (!fila) {
+        return null;
+      }
+
+      return {
+        activos: numero(
+          valorDe(
+            fila,
+            [
+              "total_activos",
+              "total"
+            ]
+          )
+        ),
+
+        utilizados: numero(
+          valorDe(
+            fila,
+            [
+              "utilizados_ultimos_60_dias",
+              "utilizados"
+            ]
+          )
+        ),
+
+        observados: numero(
+          valorDe(
+            fila,
+            [
+              "candidatos_depuracion",
+              "sin_uso_ultimos_60_dias",
+              "observados"
+            ]
+          )
+        )
+      };
+    }
+
+
+    function actualizarTarjetas() {
+      const conductores =
+        totalesDesdeResumen("CONDUCTORES");
+
+      const vehiculos =
+        totalesDesdeResumen("VEHICULOS") ||
+        totalesDesdeResumen("VEHÍCULOS");
+
+      const conductoresObservados =
+        estado.datos.conductores.length;
+
+      const vehiculosObservados =
+        estado.datos.vehiculos.length;
+
+      $("conductoresActivos").textContent =
+        conductores?.activos ?? "—";
+
+      $("conductoresUtilizados").textContent =
+        conductores?.utilizados ?? "—";
+
+      $("conductoresObservados").textContent =
+        conductores?.observados ??
+        conductoresObservados;
+
+      $("vehiculosActivos").textContent =
+        vehiculos?.activos ?? "—";
+
+      $("vehiculosUtilizados").textContent =
+        vehiculos?.utilizados ?? "—";
+
+      $("vehiculosObservados").textContent =
+        vehiculos?.observados ??
+        vehiculosObservados;
+    }
+
+
+    function obtenerDepuracion(datos) {
+      if (
+        datos?.depuracion_eremito &&
+        typeof datos.depuracion_eremito ===
+          "object"
+      ) {
+        return datos.depuracion_eremito;
+      }
+
+      return datos;
+    }
+
+
+    function configurarDatos(datos) {
+      const depuracion =
+        obtenerDepuracion(datos);
+
+      estado.datos.resumen = lista(
+        depuracion,
+        [
+          "resumen",
+          "resumen_general",
+          "totales"
+        ]
+      );
+
+      estado.datos.empresas = lista(
+        depuracion,
+        [
+          "resumen_por_empresa",
+          "resumen_empresas",
+          "empresas"
+        ]
+      );
+
+      estado.datos.conductores = lista(
+        depuracion,
+        [
+          "conductores_observados",
+          "conductores"
+        ]
+      );
+
+      estado.datos.vehiculos = lista(
+        depuracion,
+        [
+          "vehiculos_observados",
+          "vehiculos"
+        ]
+      );
+
+      llenarEmpresas();
+      actualizarTarjetas();
+      renderizarTabla();
+    }
+
+
+    function mostrarMensaje(
+      contenido,
+      tipo = "info"
+    ) {
+      const elemento =
+        $("mensaje");
+
+      elemento.textContent =
+        contenido;
+
+      elemento.className =
+        `mensaje visible ${tipo}`;
+    }
+
+
+    function ocultarMensaje() {
+      $("mensaje").className =
+        "mensaje";
+    }
+
+
+    async function cargarDatos() {
+      $("actualizacion").textContent =
+        "Consultando…";
+
+      ocultarMensaje();
+
+      $("recargar").disabled = true;
+
+      try {
+        const respuesta = await fetch(
+          `${API_URL}?_=${Date.now()}`,
+          {
+            cache: "no-store"
+          }
+        );
+
+        const datos =
+          await respuesta.json();
+
+        if (!respuesta.ok || datos.ok === false) {
+          throw new Error(
+            datos.error ||
+            `Error HTTP ${respuesta.status}`
+          );
+        }
+
+        configurarDatos(datos);
+
+        $("actualizacion").textContent =
+          datos.actualizado
+            ? formatearFecha(
+                datos.actualizado
+              )
+            : new Date()
+                .toLocaleString(
+                  "es-UY",
+                  {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false
+                  }
+                );
+
+      } catch (error) {
+        $("actualizacion").textContent =
+          "Sin conexión";
+
+        mostrarMensaje(
+          error instanceof Error
+            ? error.message
+            : "No fue posible cargar los datos.",
+          "error"
+        );
+
+        configurarDatos({
+          resumen: [],
+          resumen_por_empresa: [],
+          conductores_observados: [],
+          vehiculos_observados: []
+        });
+
+      } finally {
+        $("recargar").disabled = false;
+      }
+    }
+
+
+    function cambiarPestana(tab) {
+      estado.tab = tab;
+
+      document
+        .querySelectorAll(".pestana")
+        .forEach(
+          boton => {
+            boton.classList.toggle(
+              "activa",
+              boton.dataset.tab === tab
+            );
+          }
+        );
+
+      renderizarTabla();
+    }
+
+
+    function valorCSV(fila, columna) {
+      if (columna.tipo === "accion_conductor") {
+        const cedula = valorDe(
+          fila,
+          [
+            "cedula_identidad",
+            "cedula",
+            "ci_eremito",
+            "identity_document"
+          ]
+        );
+
+        return cedula
+          ? crearUrlConductor(cedula)
+          : "";
+      }
+
+      if (columna.tipo === "accion_vehiculo") {
+        const matricula = valorDe(
+          fila,
+          [
+            "matricula",
+            "matricula_limpia"
+          ]
+        );
+
+        return matricula
+          ? crearUrlVehiculo(matricula)
+          : "";
+      }
+
+      const valor =
+        valorDe(fila, columna.claves);
+
+      return columna.tipo === "fecha"
+        ? formatearFecha(valor)
+        : texto(valor);
+    }
+
+
+    function escaparCSV(valor) {
+      return (
+        '"' +
+        String(valor ?? "")
+          .replaceAll('"', '""') +
+        '"'
+      );
+    }
+
+
+    function exportarCSV() {
+      const definicion =
+        columnas[estado.tab];
+
+      const filas =
+        registrosFiltrados();
+
+      const lineas = [
+        definicion
+          .map(
+            columna =>
+              escaparCSV(
+                columna.titulo === "ACCIÓN"
+                  ? "ENLACE EREMITO"
+                  : columna.titulo
+              )
+          )
+          .join(";"),
+
+        ...filas.map(
+          fila =>
+            definicion
+              .map(
+                columna =>
+                  escaparCSV(
+                    valorCSV(
+                      fila,
+                      columna
+                    )
+                  )
+              )
+              .join(";")
+        )
+      ];
+
+      const contenido =
+        "\uFEFF" +
+        lineas.join("\r\n");
+
+      const archivo = new Blob(
+        [contenido],
+        {
+          type:
+            "text/csv;charset=utf-8"
+        }
+      );
+
+      const enlace =
+        document.createElement("a");
+
+      enlace.href =
+        URL.createObjectURL(archivo);
+
+      enlace.download =
+        `depuracion_eremito_${estado.tab}.csv`;
+
+      document.body.appendChild(enlace);
+      enlace.click();
+      enlace.remove();
+
+      URL.revokeObjectURL(
+        enlace.href
+      );
+    }
+
+
+    document
+      .querySelectorAll(".pestana")
+      .forEach(
+        boton => {
+          boton.addEventListener(
+            "click",
+            () => {
+              cambiarPestana(
+                boton.dataset.tab
+              );
+            }
+          );
+        }
+      );
+
+
+    $("buscar").addEventListener(
+      "input",
+      evento => {
+        estado.filtroTexto =
+          evento.target.value;
+
+        renderizarTabla();
+      }
+    );
+
+
+    $("empresa").addEventListener(
+      "change",
+      evento => {
+        estado.filtroEmpresa =
+          evento.target.value;
+
+        renderizarTabla();
+      }
+    );
+
+
+    $("recargar").addEventListener(
+      "click",
+      cargarDatos
+    );
+
+
+    $("exportar").addEventListener(
+      "click",
+      exportarCSV
+    );
+
+
+    cargarDatos();
+  </script>
+</body>
+</html>
