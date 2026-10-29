@@ -54,11 +54,6 @@ async function consultarDatos(env) {
           "DepuracionERemito-Cloudflare/1.0"
       },
 
-      cf: {
-        cacheTtl: 0,
-        cacheEverything: false
-      },
-
       signal: AbortSignal.timeout(30000)
     }
   );
@@ -69,31 +64,45 @@ async function consultarDatos(env) {
     );
   }
 
-  const texto = await respuesta.text();
+  const contenido = await respuesta.text();
 
   let datos;
 
   try {
-    datos = JSON.parse(texto);
+    datos = JSON.parse(contenido);
+
   } catch {
     throw new Error(
-      "El archivo consultado no contiene un JSON válido."
+      "El enlace configurado no devolvió un JSON válido. " +
+      "La respuesta comienza con: " +
+      contenido.slice(0, 100)
     );
   }
 
   return {
-    depuracion: extraerDepuracion(datos),
-
     actualizado:
       datos.actualizado ||
       datos.fecha_actualizacion ||
       datos.ultima_actualizacion ||
-      null
+      null,
+
+    depuracion:
+      extraerDepuracion(datos)
   };
 }
 
 
-async function atenderAPI(env) {
+async function atenderAPI(request, env) {
+  if (request.method !== "GET") {
+    return responderJSON(
+      {
+        ok: false,
+        error: "Utilizá el método GET."
+      },
+      405
+    );
+  }
+
   try {
     const resultado =
       await consultarDatos(env);
@@ -129,17 +138,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/datos") {
-      if (request.method !== "GET") {
-        return responderJSON(
-          {
-            ok: false,
-            error: "Utilizá el método GET."
-          },
-          405
-        );
-      }
-
-      return atenderAPI(env);
+      return atenderAPI(request, env);
     }
 
     return env.ASSETS.fetch(request);
