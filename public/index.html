@@ -62,11 +62,6 @@
       font: inherit;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
     .encabezado {
       background:
         linear-gradient(
@@ -148,12 +143,6 @@
       background: var(--rojo-claro);
     }
 
-    .mensaje.info {
-      color: #244e3e;
-      border: 1px solid #bcd8cb;
-      background: var(--verde-claro);
-    }
-
     .tarjetas {
       display: grid;
       grid-template-columns:
@@ -184,8 +173,8 @@
     .tarjeta-titulo {
       min-height: 30px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       color: var(--muted);
       font-size: 0.69rem;
       font-weight: 700;
@@ -350,7 +339,7 @@
 
     table {
       width: 100%;
-      min-width: 930px;
+      min-width: 850px;
       border-collapse: collapse;
       table-layout: auto;
     }
@@ -638,10 +627,7 @@
       class="mensaje"
     ></div>
 
-    <section
-      class="tarjetas"
-      aria-label="Resumen de depuración"
-    >
+    <section class="tarjetas">
       <article class="tarjeta">
         <div class="tarjeta-titulo">
           Conductores activos
@@ -722,10 +708,7 @@
     </section>
 
     <section class="panel">
-      <nav
-        class="pestanas"
-        aria-label="Secciones"
-      >
+      <nav class="pestanas">
         <button
           class="pestana activa"
           type="button"
@@ -798,7 +781,7 @@
           Mostrando 0 registros
         </span>
 
-        <span>
+        <span id="periodo">
           Período de control: últimos 60 días
         </span>
       </div>
@@ -822,7 +805,7 @@
 
     const estado = {
       datos: {
-        resumen: [],
+        resumen: {},
         empresas: [],
         conductores: [],
         vehiculos: []
@@ -839,59 +822,38 @@
         {
           titulo: "CÉDULA",
           claves: [
-            "cedula_identidad",
-            "cedula",
-            "ci_eremito",
-            "identity_document"
+            "ci_eremito"
           ]
         },
         {
           titulo: "CONDUCTOR",
           claves: [
-            "conductor",
-            "nombre_conductor",
-            "nombre",
-            "chofer"
+            "conductor_eremito"
           ]
         },
         {
           titulo: "EMPRESA",
           claves: [
-            "empresa",
             "contratista"
           ]
         },
         {
           titulo: "ÚLTIMO USO",
           claves: [
-            "ultimo_registro",
-            "ultimo_uso",
-            "ultima_fecha"
+            "ultimo_registro"
           ],
           tipo: "fecha"
         },
         {
-          titulo: "VIAJES",
+          titulo: "VIAJES ÚLTIMOS 60 DÍAS",
           claves: [
-            "cantidad_registros",
-            "cantidad_usos",
-            "viajes",
-            "usos"
-          ]
-        },
-        {
-          titulo: "DÍAS SIN USO",
-          claves: [
-            "dias_sin_uso",
-            "dias"
+            "cantidad_remitos_ultimos_60_dias"
           ]
         },
         {
           titulo: "ESTADO",
           claves: [
-            "estado_depuracion",
-            "estado",
-            "resultado"
+            "estado_actividad"
           ],
           tipo: "estado"
         },
@@ -905,48 +867,32 @@
         {
           titulo: "MATRÍCULA",
           claves: [
-            "matricula",
-            "matricula_limpia"
+            "matricula"
           ]
         },
         {
           titulo: "EMPRESA",
           claves: [
-            "empresa",
             "contratista"
           ]
         },
         {
           titulo: "ÚLTIMO USO",
           claves: [
-            "ultimo_registro",
-            "ultimo_uso",
-            "ultima_fecha"
+            "ultimo_registro"
           ],
           tipo: "fecha"
         },
         {
-          titulo: "VIAJES",
+          titulo: "VIAJES ÚLTIMOS 60 DÍAS",
           claves: [
-            "cantidad_registros",
-            "cantidad_usos",
-            "viajes",
-            "usos"
-          ]
-        },
-        {
-          titulo: "DÍAS SIN USO",
-          claves: [
-            "dias_sin_uso",
-            "dias"
+            "cantidad_remitos_ultimos_60_dias"
           ]
         },
         {
           titulo: "ESTADO",
           claves: [
-            "estado_depuracion",
-            "estado",
-            "resultado"
+            "estado_actividad"
           ],
           tipo: "estado"
         },
@@ -973,31 +919,27 @@
           titulo:
             "UTILIZADOS ÚLTIMOS 60 DÍAS",
           claves: [
-            "utilizados_ultimos_60_dias",
-            "utilizados"
+            "utilizados_ultimos_60_dias"
           ]
         },
         {
           titulo:
             "SIN USO ÚLTIMOS 60 DÍAS",
           claves: [
-            "sin_uso_ultimos_60_dias",
-            "sin_uso"
+            "sin_uso_ultimos_60_dias"
           ]
         },
         {
           titulo: "A REVISAR",
           claves: [
-            "coincidencias_a_revisar",
-            "a_revisar"
+            "coincidencias_a_revisar"
           ]
         },
         {
           titulo:
             "CANDIDATOS DEPURACIÓN",
           claves: [
-            "candidatos_depuracion",
-            "candidatos"
+            "candidatos_depuracion"
           ]
         }
       ]
@@ -1018,16 +960,6 @@
       }
 
       return String(valor).trim() || "—";
-    }
-
-
-    function numero(valor) {
-      const convertido =
-        Number(valor);
-
-      return Number.isFinite(convertido)
-        ? convertido
-        : 0;
     }
 
 
@@ -1175,9 +1107,9 @@
         normalizar(valor);
 
       if (
-        resultado.includes("nunca") ||
         resultado.includes("sin uso") ||
-        resultado.includes("depuracion")
+        resultado.includes("depuracion") ||
+        resultado.includes("nunca")
       ) {
         return "estado-rojo";
       }
@@ -1275,15 +1207,7 @@
         "accion_conductor"
       ) {
         const cedula =
-          valorDe(
-            fila,
-            [
-              "cedula_identidad",
-              "cedula",
-              "ci_eremito",
-              "identity_document"
-            ]
-          );
+          fila.ci_eremito;
 
         if (!cedula) {
           return "—";
@@ -1308,13 +1232,7 @@
         "accion_vehiculo"
       ) {
         const matricula =
-          valorDe(
-            fila,
-            [
-              "matricula",
-              "matricula_limpia"
-            ]
-          );
+          fila.matricula;
 
         if (!matricula) {
           return "—";
@@ -1489,111 +1407,35 @@
     }
 
 
-    function sumarResumenPorTipo(
-      tipoBuscado
-    ) {
-      const filas =
-        estado.datos.empresas.filter(
-          fila => {
-            const tipo =
-              normalizar(
-                valorDe(
-                  fila,
-                  ["tipo"]
-                )
-              );
-
-            return tipo.includes(
-              normalizar(tipoBuscado)
-            );
-          }
-        );
-
-      return {
-        activos:
-          filas.reduce(
-            (total, fila) =>
-              total +
-              numero(
-                valorDe(
-                  fila,
-                  ["total_activos"]
-                )
-              ),
-            0
-          ),
-
-        utilizados:
-          filas.reduce(
-            (total, fila) =>
-              total +
-              numero(
-                valorDe(
-                  fila,
-                  [
-                    "utilizados_ultimos_60_dias",
-                    "utilizados"
-                  ]
-                )
-              ),
-            0
-          ),
-
-        observados:
-          filas.reduce(
-            (total, fila) =>
-              total +
-              numero(
-                valorDe(
-                  fila,
-                  [
-                    "candidatos_depuracion",
-                    "sin_uso_ultimos_60_dias",
-                    "observados"
-                  ]
-                )
-              ),
-            0
-          )
-      };
-    }
-
-
     function actualizarTarjetas() {
-      const conductores =
-        sumarResumenPorTipo(
-          "CONDUCTORES"
-        );
-
-      const vehiculos =
-        sumarResumenPorTipo(
-          "VEHICULOS"
-        );
+      const resumen =
+        estado.datos.resumen || {};
 
       $("conductoresActivos")
         .textContent =
-          conductores.activos;
+          resumen.conductores_activos ?? 0;
 
       $("conductoresUtilizados")
         .textContent =
-          conductores.utilizados;
+          resumen.conductores_utilizados ?? 0;
 
       $("conductoresObservados")
         .textContent =
-          conductores.observados;
-
+          resumen.conductores_observados ??
+          estado.datos.conductores.length;
 
       $("vehiculosActivos")
         .textContent =
-          vehiculos.activos;
+          resumen.vehiculos_activos ?? 0;
 
       $("vehiculosUtilizados")
         .textContent =
-          vehiculos.utilizados;
+          resumen.vehiculos_utilizados ?? 0;
 
       $("vehiculosObservados")
         .textContent =
-          vehiculos.observados;
+          resumen.vehiculos_observados ??
+          estado.datos.vehiculos.length;
     }
 
 
@@ -1617,21 +1459,14 @@
         obtenerDepuracion(datos);
 
       estado.datos.resumen =
-        lista(
-          depuracion,
-          [
-            "resumen",
-            "resumen_general",
-            "totales"
-          ]
-        );
+        depuracion.resumen || {};
 
       estado.datos.empresas =
         lista(
           depuracion,
           [
-            "resumen_por_empresa",
             "resumen_empresas",
+            "resumen_por_empresa",
             "empresas"
           ]
         );
@@ -1654,6 +1489,26 @@
           ]
         );
 
+      const periodoDias =
+        depuracion.periodo_dias || 60;
+
+      const fechaDesde =
+        depuracion.fecha_desde || "";
+
+      const fechaHasta =
+        depuracion.fecha_hasta || "";
+
+      $("periodo").textContent =
+        fechaDesde && fechaHasta
+          ? (
+              `Período: ${fechaDesde} al ` +
+              `${fechaHasta} · ${periodoDias} días`
+            )
+          : (
+              `Período de control: últimos ` +
+              `${periodoDias} días`
+            );
+
       llenarEmpresas();
       actualizarTarjetas();
       renderizarTabla();
@@ -1661,8 +1516,7 @@
 
 
     function mostrarMensaje(
-      contenido,
-      tipo = "info"
+      contenido
     ) {
       const elemento =
         $("mensaje");
@@ -1671,7 +1525,7 @@
         contenido;
 
       elemento.className =
-        `mensaje visible ${tipo}`;
+        "mensaje visible error";
     }
 
 
@@ -1710,9 +1564,7 @@
 
         } catch {
           throw new Error(
-            "La API no devolvió un JSON válido. " +
-            "Respuesta recibida: " +
-            contenido.slice(0, 100)
+            "La API no devolvió un JSON válido."
           );
         }
 
@@ -1730,22 +1582,19 @@
 
         $("actualizacion")
           .textContent =
-            datos.actualizado
-              ? formatearFecha(
-                  datos.actualizado
-                )
-              : new Date()
-                  .toLocaleString(
-                    "es-UY",
-                    {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: false
-                    }
-                  );
+            datos.actualizado ||
+            new Date()
+              .toLocaleString(
+                "es-UY",
+                {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: false
+                }
+              );
 
       } catch (error) {
         $("actualizacion")
@@ -1755,16 +1604,8 @@
         mostrarMensaje(
           error instanceof Error
             ? error.message
-            : "No fue posible cargar los datos.",
-          "error"
+            : "No fue posible cargar los datos."
         );
-
-        configurarDatos({
-          resumen: [],
-          resumen_por_empresa: [],
-          conductores_observados: [],
-          vehiculos_observados: []
-        });
 
       } finally {
         $("recargar").disabled = false;
@@ -1798,19 +1639,10 @@
         columna.tipo ===
         "accion_conductor"
       ) {
-        const cedula =
-          valorDe(
-            fila,
-            [
-              "cedula_identidad",
-              "cedula",
-              "ci_eremito",
-              "identity_document"
-            ]
-          );
-
-        return cedula
-          ? crearUrlConductor(cedula)
+        return fila.ci_eremito
+          ? crearUrlConductor(
+              fila.ci_eremito
+            )
           : "";
       }
 
@@ -1818,17 +1650,10 @@
         columna.tipo ===
         "accion_vehiculo"
       ) {
-        const matricula =
-          valorDe(
-            fila,
-            [
-              "matricula",
-              "matricula_limpia"
-            ]
-          );
-
-        return matricula
-          ? crearUrlVehiculo(matricula)
+        return fila.matricula
+          ? crearUrlVehiculo(
+              fila.matricula
+            )
           : "";
       }
 
